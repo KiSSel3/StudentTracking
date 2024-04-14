@@ -1,6 +1,6 @@
 namespace StudentTracking.Domain.Entity.Letter;
 
-public class CountEntity
+public class CountEntity : BaseEntity
 {
     public int Value { get; set; }
     
