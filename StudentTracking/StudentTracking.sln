@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentTracking.Domain", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentTracking.Shared", "StudentTracking.Shared\StudentTracking.Shared.csproj", "{23910908-D455-4344-A561-E6BA7F2F4C2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentTracking.DataManager", "StudentTracking.DataManager\StudentTracking.DataManager.csproj", "{689F2B6F-7CB1-4B98-BC15-89E652C3777C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentTracking.Service", "StudentTracking.Service\StudentTracking.Service.csproj", "{2B354549-BE0F-4F7C-A65A-F0469374108D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{23910908-D455-4344-A561-E6BA7F2F4C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23910908-D455-4344-A561-E6BA7F2F4C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23910908-D455-4344-A561-E6BA7F2F4C2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{689F2B6F-7CB1-4B98-BC15-89E652C3777C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{689F2B6F-7CB1-4B98-BC15-89E652C3777C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{689F2B6F-7CB1-4B98-BC15-89E652C3777C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{689F2B6F-7CB1-4B98-BC15-89E652C3777C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B354549-BE0F-4F7C-A65A-F0469374108D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B354549-BE0F-4F7C-A65A-F0469374108D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B354549-BE0F-4F7C-A65A-F0469374108D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B354549-BE0F-4F7C-A65A-F0469374108D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
