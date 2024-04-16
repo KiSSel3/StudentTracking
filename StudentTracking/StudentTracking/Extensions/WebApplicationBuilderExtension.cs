@@ -2,10 +2,18 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using StudentTracking.DataManager;
 using NLog.Web;
+using StudentTracking.DataManager.Implementations.Contract;
+using StudentTracking.DataManager.Implementations.Letter;
 using StudentTracking.DataManager.Implementations.Main;
+using StudentTracking.DataManager.Implementations.Shared;
 using StudentTracking.DataManager.Implementations.Supporting;
+using StudentTracking.DataManager.Interfaces;
+using StudentTracking.DataManager.Interfaces.Contract;
+using StudentTracking.DataManager.Interfaces.Letter;
 using StudentTracking.DataManager.Interfaces.Main;
 using StudentTracking.DataManager.Interfaces.Supporting;
+using StudentTracking.Domain.Entities.Letter;
+using StudentTracking.Domain.Entities.Shared;
 using StudentTracking.Service.Implementations.Main;
 using StudentTracking.Service.Interfaces.Main;
 
@@ -22,6 +30,16 @@ public static class WebApplicationBuilderExtension
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IRoleRepository, RoleRepository>();
         builder.Services.AddScoped<IRoleUserRepository, RoleUserRepository>();
+        
+        builder.Services.AddScoped<IAnnualNumberPeopleRepository, AnnualNumberPeopleRepository>();
+        builder.Services.AddScoped<IContractRepository, ContractRepository>();
+        builder.Services.AddScoped<ICountRepository, CountRepository>();
+        builder.Services.AddScoped<ILetterRepository, LetterRepository>();
+        builder.Services.AddScoped<IRemoteAreaRepository, RemoteAreaRepository>();
+        builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+        builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+        builder.Services.AddScoped<IBaseRepository<CompanyEntity>, CompanyRepository>();
+        builder.Services.AddScoped<IBaseRepository<FacultyEntity>, FacultyRepository>();
 
         //Services
         builder.Services.AddScoped<IRoleService, RoleService>();

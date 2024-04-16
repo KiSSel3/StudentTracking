@@ -18,7 +18,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<StudentEntity> Students { get; set; }
     
     //Contract
-    public DbSet<CountEntity> Contracts { get; set; }
+    public DbSet<ContractEntity> Contracts { get; set; }
     public DbSet<AnnualNumberPeople> AnnualNumberPeoples { get; set; }
     
     //Shared

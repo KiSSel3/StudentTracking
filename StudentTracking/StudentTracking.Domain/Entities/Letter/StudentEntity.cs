@@ -4,5 +4,5 @@ public class StudentEntity : BaseEntity
 {
     public string Name { get; set; }
     
-    public Guid RecordId { get; set; }
+    public Guid LetterId { get; set; }
 }
