@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using StudentTracking.Domain.Entities.Main;
 using StudentTracking.Domain.Entity.Main;
 using StudentTracking.Shared.ViewModels;
 

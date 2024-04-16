@@ -1,19 +1,29 @@
 using Microsoft.EntityFrameworkCore;
-using StudentTracking.Domain.Entity.Letter;
+using StudentTracking.Domain.Entities.Contract;
+using StudentTracking.Domain.Entities.Letter;
+using StudentTracking.Domain.Entities.Main;
+using StudentTracking.Domain.Entities.Shared;
 using StudentTracking.Domain.Entity.Main;
-using StudentTracking.Domain.Model.Main;
+using StudentTracking.Domain.Model;
 
 namespace StudentTracking.DataManager;
 
 public class ApplicationDbContext : DbContext
 {
     //Letter
-    public DbSet<FacultieEntity> Faculties { get; set; }
-    public DbSet<RecordEntity> Records { get; set; }
+    public DbSet<LetterEntity> Letters { get; set; }
     public DbSet<CountEntity> Counts { get; set; }
     public DbSet<RemoteAreaEntity> RemoteAreas { get; set; }
     public DbSet<SpecialtyEntity> Specialties { get; set; }
     public DbSet<StudentEntity> Students { get; set; }
+    
+    //Contract
+    public DbSet<CountEntity> Contracts { get; set; }
+    public DbSet<AnnualNumberPeople> AnnualNumberPeoples { get; set; }
+    
+    //Shared
+    public DbSet<CompanyEntity> Companies { get; set; }
+    public DbSet<FacultyEntity> Faculties { get; set; }
     
     //Main
     public DbSet<RoleEntity> Roles { get; set; }

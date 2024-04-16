@@ -22,7 +22,27 @@ namespace StudentTracking.DataManager.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("StudentTracking.Domain.Entity.Letter.CountEntity", b =>
+            modelBuilder.Entity("StudentTracking.Domain.Entities.Contract.AnnualNumberPeople", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ContactId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("integer");
+
+                    b.Property<DateOnly>("Year")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AnnualNumberPeoples");
+                });
+
+            modelBuilder.Entity("StudentTracking.Domain.Entities.Letter.CountEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,25 +56,10 @@ namespace StudentTracking.DataManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Counts");
+                    b.ToTable("CountEntity");
                 });
 
-            modelBuilder.Entity("StudentTracking.Domain.Entity.Letter.FacultieEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Faculties");
-                });
-
-            modelBuilder.Entity("StudentTracking.Domain.Entity.Letter.RecordEntity", b =>
+            modelBuilder.Entity("StudentTracking.Domain.Entities.Letter.LetterEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,17 +69,12 @@ namespace StudentTracking.DataManager.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Adress")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Base")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uuid");
 
                     b.Property<DateOnly>("Date")
                         .HasColumnType("date");
@@ -82,11 +82,11 @@ namespace StudentTracking.DataManager.Migrations
                     b.Property<Guid>("FacultyId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("LetterNumber")
+                    b.Property<string>("Note")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Note")
+                    b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -96,10 +96,10 @@ namespace StudentTracking.DataManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Records");
+                    b.ToTable("Letters");
                 });
 
-            modelBuilder.Entity("StudentTracking.Domain.Entity.Letter.RemoteAreaEntity", b =>
+            modelBuilder.Entity("StudentTracking.Domain.Entities.Letter.RemoteAreaEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,7 +117,7 @@ namespace StudentTracking.DataManager.Migrations
                     b.ToTable("RemoteAreas");
                 });
 
-            modelBuilder.Entity("StudentTracking.Domain.Entity.Letter.SpecialtyEntity", b =>
+            modelBuilder.Entity("StudentTracking.Domain.Entities.Letter.SpecialtyEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,7 +135,7 @@ namespace StudentTracking.DataManager.Migrations
                     b.ToTable("Specialties");
                 });
 
-            modelBuilder.Entity("StudentTracking.Domain.Entity.Letter.StudentEntity", b =>
+            modelBuilder.Entity("StudentTracking.Domain.Entities.Letter.StudentEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -151,6 +151,78 @@ namespace StudentTracking.DataManager.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("StudentTracking.Domain.Entities.Main.UserEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsAccessAllowed")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("StudentTracking.Domain.Entities.Shared.CompanyEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Director")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ShortName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("StudentTracking.Domain.Entities.Shared.FacultyEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Abbreviation")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Faculties");
                 });
 
             modelBuilder.Entity("StudentTracking.Domain.Entity.Main.RoleEntity", b =>
@@ -180,33 +252,7 @@ namespace StudentTracking.DataManager.Migrations
                         });
                 });
 
-            modelBuilder.Entity("StudentTracking.Domain.Entity.Main.UserEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("IsAccessAllowed")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("StudentTracking.Domain.Model.Main.UserRoleModel", b =>
+            modelBuilder.Entity("StudentTracking.Domain.Model.UserRoleModel", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
