@@ -13,6 +13,7 @@ internal class Program
         builder.AddDataBase();
         builder.AddAuthentication();
         builder.AddLogging();
+        builder.AddMappers();
         
         var app = builder.Build();
 

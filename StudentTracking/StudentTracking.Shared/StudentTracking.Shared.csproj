@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\StudentTracking.DataManager\StudentTracking.DataManager.csproj" />
+      <ProjectReference Include="..\StudentTracking.Domain\StudentTracking.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
