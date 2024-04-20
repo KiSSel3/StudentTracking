@@ -1,6 +1,4 @@
-using StudentTracking.Domain.Entities;
-
-namespace StudentTracking.Domain.Entity.Main;
+namespace StudentTracking.Domain.Entities.Main;
 
 public class RoleEntity : BaseEntity
 {

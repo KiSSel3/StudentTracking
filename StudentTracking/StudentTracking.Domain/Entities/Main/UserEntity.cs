@@ -1,5 +1,3 @@
-using StudentTracking.Domain.Entity;
-
 namespace StudentTracking.Domain.Entities.Main;
 
 public class UserEntity : BaseEntity

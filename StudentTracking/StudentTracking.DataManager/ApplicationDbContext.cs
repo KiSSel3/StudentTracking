@@ -3,8 +3,7 @@ using StudentTracking.Domain.Entities.Contract;
 using StudentTracking.Domain.Entities.Letter;
 using StudentTracking.Domain.Entities.Main;
 using StudentTracking.Domain.Entities.Shared;
-using StudentTracking.Domain.Entity.Main;
-using StudentTracking.Domain.Model;
+using StudentTracking.Domain.Models;
 
 namespace StudentTracking.DataManager;
 

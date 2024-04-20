@@ -1,0 +1,129 @@
+@model StudentTracking.Shared.ViewModels.LetterViewModel
+
+<table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
+    <caption>
+        <div class="col-2 border-2">
+            <ul class="nav ">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> Выбрать факультет: @(Model.CurrentFaculty?.Abbreviation ?? "Все")</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <form method="post" asp-controller="Letter" asp-action="Index">
+                                <input type="hidden" name="facultyId" value="@null"/>
+                                <button type="submit" class="dropdown-item">Все</button>
+                            </form>
+                        </li>
+                        @foreach (var item in Model.Faculties)
+                        {
+                            <li>
+                                <form method="post" asp-controller="Letter" asp-action="Index">
+                                    <input type="hidden" name="facultyId" value="@item.Id"/>
+                                    <button type="submit" class="dropdown-item">@item.Abbreviation</button>
+                                </form>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </caption>
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">№</th>
+        <th scope="col">Факультет</th>
+        <th scope="col">Специальность</th>
+        <th scope="col">Организация</th>
+        <th scope="col">Адрес</th>
+        <th scope="col">Отсталый р-н</th>
+        <th scope="col">Базовая</th>
+        <th scope="col">№ письма</th>
+        <th scope="col">Дата</th>
+        <th scope="col">Кол-во</th>
+        <th scope="col">Должность</th>
+        <th scope="col">Общежитие</th>
+        <th scope="col">Именное</th>
+        <th scope="col">Примичание</th>
+        <th scope="col">Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var fullLetter in Model.FullLetters)
+    {
+        <tr>
+            <th scope="row">@fullLetter.Number</th>
+
+            <td>@fullLetter.Faculty.Abbreviation</td>
+        
+            <td>
+                <ul class="list-group">
+                    @foreach (var specialty in fullLetter.Specialties)
+                    {
+                        <li class="list-group-item">@specialty.Value</li>
+                    }
+                </ul>
+            </td>
+
+            <td>@fullLetter.Company.ShortName</td>
+        
+            <td>@fullLetter.Company.Address</td>
+
+            <td>
+                <ul class="list-group">
+                    @foreach (var remoteArea in fullLetter.RemoteAreas)
+                    {
+                        <li class="list-group-item">@remoteArea.Value</li>
+                    }
+                </ul>
+            </td>
+
+            <td>@fullLetter.Letter.Base</td>
+        
+            <td>@fullLetter.Letter.Number</td>
+
+            <td>@fullLetter.Letter.Date.ToString("yyyy-MM-dd")</td>
+
+            <td>
+                <ul class="list-group">
+                    @foreach (var count in fullLetter.Counts)
+                    {
+                        <li class="list-group-item">@count.Value</li>
+                    }
+                </ul>
+            </td>
+        
+            <td>@fullLetter.Letter.Position</td>
+        
+            <td>@fullLetter.Letter.AccommodationProvision</td>
+
+            <td>
+                <ul class="list-group">
+                    @foreach (var student in fullLetter.Students)
+                    {
+                        <li class="list-group-item">@student.Name</li>
+                    }
+                </ul>
+            </td>
+        
+            <td>@fullLetter.Letter.Note</td>
+            
+            <td>
+                <a @*asp-controller="" asp-action=""  asp-route-="@item.Id" *@ class="btn btn-primary m-1">
+                    <i class="fas fa-trash"></i> Удалить
+                </a>
+                <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#update" data-bs-route-id="@fullLetter.Letter.Id">
+                    <i class="fas fa-edit"></i> Изменить
+                </button>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="15">
+            <button type="button" class="btn btn-primary w-100 h-100" data-bs-toggle="modal" data-bs-target="#createType" id="createTypeBtn">
+                <i class="fas fa-plus-circle fa-3x"></i>
+            </button>
+        </td>
+    </tr>
+    
+    </tbody>
+    
+</table>

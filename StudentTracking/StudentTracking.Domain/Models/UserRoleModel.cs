@@ -1,4 +1,4 @@
-namespace StudentTracking.Domain.Model;
+namespace StudentTracking.Domain.Models;
 
 public class UserRoleModel : BaseModel
 {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StudentTracking.Domain.Model;
+namespace StudentTracking.Domain.Models;
 
 public class BaseModel
 {

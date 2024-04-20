@@ -16,10 +16,12 @@ public class ContractToFullContractMapper(
     private readonly IBaseRepository<FacultyEntity> _facultyRepository = facultyRepository;
 
 
-    public async Task<FullContractModel> MapTo(ContractEntity contract)
+    public async Task<FullContractModel> MapTo(ContractEntity contract, int number)
     {
         FullContractModel fullContract = new FullContractModel();
 
+        fullContract.Number = number;
+        
         fullContract.Contract = contract;
 
         fullContract.Company = await _companyRepository.GetByIdAsync(contract.CompanyId);

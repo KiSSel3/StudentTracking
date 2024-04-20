@@ -1,4 +1,4 @@
-using StudentTracking.Domain.Model;
+using StudentTracking.Domain.Models;
 
 namespace StudentTracking.DataManager.Interfaces.Supporting;
 

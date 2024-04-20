@@ -5,6 +5,7 @@ namespace StudentTracking.Shared.Models;
 
 public class FullContractModel
 {
+    public int Number { get; set; }
     public ContractEntity Contract { get; set; }
     public CompanyEntity Company { get; set; }
     public FacultyEntity Faculty { get; set; }

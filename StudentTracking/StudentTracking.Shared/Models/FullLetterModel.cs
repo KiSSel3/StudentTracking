@@ -5,6 +5,7 @@ namespace StudentTracking.Shared.Models;
 
 public class FullLetterModel
 {
+    public int Number { get; set; }
     public LetterEntity Letter { get; set; }
     public CompanyEntity Company { get; set; }
     public FacultyEntity Faculty { get; set; }

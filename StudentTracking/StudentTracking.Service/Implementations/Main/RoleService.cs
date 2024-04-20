@@ -1,5 +1,5 @@
 using StudentTracking.DataManager.Interfaces.Main;
-using StudentTracking.Domain.Entity.Main;
+using StudentTracking.Domain.Entities.Main;
 using StudentTracking.Service.Interfaces.Main;
 
 namespace StudentTracking.Service.Implementations.Main;

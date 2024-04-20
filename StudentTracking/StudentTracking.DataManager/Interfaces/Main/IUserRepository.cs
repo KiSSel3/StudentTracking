@@ -1,5 +1,4 @@
 using StudentTracking.Domain.Entities.Main;
-using StudentTracking.Domain.Entity.Main;
 
 namespace StudentTracking.DataManager.Interfaces.Main;
 

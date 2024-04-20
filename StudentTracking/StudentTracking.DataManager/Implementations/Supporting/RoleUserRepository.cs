@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StudentTracking.DataManager.Interfaces.Supporting;
-using StudentTracking.Domain.Model;
+using StudentTracking.Domain.Models;
 
 namespace StudentTracking.DataManager.Implementations.Supporting;
 

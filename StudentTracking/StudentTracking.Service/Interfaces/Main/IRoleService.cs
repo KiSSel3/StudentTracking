@@ -1,4 +1,4 @@
-using StudentTracking.Domain.Entity.Main;
+using StudentTracking.Domain.Entities.Main;
 
 namespace StudentTracking.Service.Interfaces.Main;
 

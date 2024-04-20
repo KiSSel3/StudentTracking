@@ -13,8 +13,12 @@ using StudentTracking.DataManager.Interfaces.Letter;
 using StudentTracking.DataManager.Interfaces.Main;
 using StudentTracking.DataManager.Interfaces.Supporting;
 using StudentTracking.Domain.Entities.Shared;
+using StudentTracking.Service.Implementations.Letter;
 using StudentTracking.Service.Implementations.Main;
+using StudentTracking.Service.Implementations.Shared;
+using StudentTracking.Service.Interfaces.Letter;
 using StudentTracking.Service.Interfaces.Main;
+using StudentTracking.Service.Interfaces.Shared;
 using StudentTracking.Shared.Mappers;
 
 namespace StudentTracking.Extensions;
@@ -44,12 +48,17 @@ public static class WebApplicationBuilderExtension
         //Services
         builder.Services.AddScoped<IRoleService, RoleService>();
         builder.Services.AddScoped<IUserService, UserService>();
+
+        builder.Services.AddScoped<ILetterService, LetterService>();
+        
+        builder.Services.AddScoped<ICompanyService, CompanyService>();
+        builder.Services.AddScoped<IFacultyService, FacultyService>();
     }
 
     public static void AddMappers(this WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<ContractToFullContractMapper>();
-        builder.Services.AddScoped<LetterToFullLetterMapper>();
+        /*builder.Services.AddScoped<ContractToFullContractMapper>();
+        builder.Services.AddScoped<LetterToFullLetterMapper>();*/
     }
     
     public static void AddAuthentication(this WebApplicationBuilder builder)
