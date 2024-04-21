@@ -53,6 +53,9 @@ public static class WebApplicationBuilderExtension
         
         builder.Services.AddScoped<ICompanyService, CompanyService>();
         builder.Services.AddScoped<IFacultyService, FacultyService>();
+        
+        builder.Services.AddScoped<ILetterFilteringService, LetterFilteringService>();
+        builder.Services.AddScoped<ILetterSortingService, LetterSortingService>();
     }
 
     public static void AddMappers(this WebApplicationBuilder builder)

@@ -1,15 +1,21 @@
+@using StudentTracking.Domain.Enums
 @model StudentTracking.Shared.ViewModels.LetterViewModel
 
 <table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
-    <caption>
+<caption>
+    <div class="row align-items-center">
         <div class="col-2 border-2">
-            <ul class="nav ">
+            <ul class="nav">
                 <li class="nav-item dropdown">
                     <a class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> Выбрать факультет: @(Model.CurrentFaculty?.Abbreviation ?? "Все")</a>
                     <ul class="dropdown-menu">
                         <li>
                             <form method="post" asp-controller="Letter" asp-action="Index">
-                                <input type="hidden" name="facultyId" value="@null"/>
+                                <input type="hidden" name="FacultyId" value="@null" />
+                                <input type="hidden" name="SortingParameter" value="@Model.SortingParameter" />
+                                <input type="hidden" name="IsSortingDirectionDesc" value="@Model.IsSortingDirectionDesc" />
+                                <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
                                 <button type="submit" class="dropdown-item">Все</button>
                             </form>
                         </li>
@@ -17,7 +23,11 @@
                         {
                             <li>
                                 <form method="post" asp-controller="Letter" asp-action="Index">
-                                    <input type="hidden" name="facultyId" value="@item.Id"/>
+                                    <input type="hidden" name="FacultyId" value="@item.Id" />
+                                    <input type="hidden" name="SortingParameter" value="@Model.SortingParameter" />
+                                    <input type="hidden" name="IsSortingDirectionDesc" value="@Model.IsSortingDirectionDesc" />
+                                    <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
                                     <button type="submit" class="dropdown-item">@item.Abbreviation</button>
                                 </form>
                             </li>
@@ -26,104 +36,448 @@
                 </li>
             </ul>
         </div>
-    </caption>
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">№</th>
-        <th scope="col">Факультет</th>
-        <th scope="col">Специальность</th>
-        <th scope="col">Организация</th>
-        <th scope="col">Адрес</th>
-        <th scope="col">Отсталый р-н</th>
-        <th scope="col">Базовая</th>
-        <th scope="col">№ письма</th>
-        <th scope="col">Дата</th>
-        <th scope="col">Кол-во</th>
-        <th scope="col">Должность</th>
-        <th scope="col">Общежитие</th>
-        <th scope="col">Именное</th>
-        <th scope="col">Примичание</th>
-        <th scope="col">Действие</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var fullLetter in Model.FullLetters)
-    {
-        <tr>
-            <th scope="row">@fullLetter.Number</th>
 
-            <td>@fullLetter.Faculty.Abbreviation</td>
+        <div class="col">
+            <form method="post" asp-controller="Letter" asp-action="Index" class="row g-3">
+                <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+                <input type="hidden" name="SortingParameter" value="@Model.SortingParameter" />
+                <input type="hidden" name="IsSortingDirectionDesc" value="@Model.IsSortingDirectionDesc" />
+                    
+                <div class="col-auto">
+                    <label for="keywordSearch" class="visually-hidden">Ключевое слово:</label>
+                    <input type="text" id="keywordSearch" name="KeywordSearch" class="form-control" placeholder="Введите ключевое слово" value="@Model.KeywordSearch">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Поиск
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</caption>
+
+    <thead class="table-dark">
+<tr>
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.Number)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                № @if (Model.SortingParameter == LetterSortingParameters.Number)
+                  {
+                      if (Model.IsSortingDirectionDesc)
+                      {
+                          <span>&#9660;</span>
+                      }
+                      else
+                      {
+                          <span>&#9650;</span>
+                      }
+                  }
+            </button>
+        </form>
+    </th>
         
-            <td>
-                <ul class="list-group">
-                    @foreach (var specialty in fullLetter.Specialties)
-                    {
-                        <li class="list-group-item">@specialty.Value</li>
-                    }
-                </ul>
-            </td>
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.Faculty)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
 
-            <td>@fullLetter.Company.ShortName</td>
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Факультет @if (Model.SortingParameter == LetterSortingParameters.Faculty)
+                          {
+                              if (Model.IsSortingDirectionDesc)
+                              {
+                                  <span>&#9660;</span>
+                              }
+                              else
+                              {
+                                  <span>&#9650;</span>
+                              }
+                          }
+            </button>
+        </form>
+    </th>
         
-            <td>@fullLetter.Company.Address</td>
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.Specialty)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
 
-            <td>
-                <ul class="list-group">
-                    @foreach (var remoteArea in fullLetter.RemoteAreas)
-                    {
-                        <li class="list-group-item">@remoteArea.Value</li>
-                    }
-                </ul>
-            </td>
-
-            <td>@fullLetter.Letter.Base</td>
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Специальность @if (Model.SortingParameter == LetterSortingParameters.Specialty)
+                              {
+                                  if (Model.IsSortingDirectionDesc)
+                                  {
+                                      <span>&#9660;</span>
+                                  }
+                                  else
+                                  {
+                                      <span>&#9650;</span>
+                                  }
+                              }
+            </button>
+        </form>
+    </th>
         
-            <td>@fullLetter.Letter.Number</td>
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.CompanyName)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
 
-            <td>@fullLetter.Letter.Date.ToString("yyyy-MM-dd")</td>
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Организация @if (Model.SortingParameter == LetterSortingParameters.CompanyName)
+                            {
+                                if (Model.IsSortingDirectionDesc)
+                                {
+                                    <span>&#9660;</span>
+                                }
+                                else
+                                {
+                                    <span>&#9650;</span>
+                                }
+                            }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.CompanyAddress)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
 
-            <td>
-                <ul class="list-group">
-                    @foreach (var count in fullLetter.Counts)
-                    {
-                        <li class="list-group-item">@count.Value</li>
-                    }
-                </ul>
-            </td>
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Адрес @if (Model.SortingParameter == LetterSortingParameters.CompanyAddress)
+                      {
+                          if (Model.IsSortingDirectionDesc)
+                          {
+                              <span>&#9660;</span>
+                          }
+                          else
+                          {
+                              <span>&#9650;</span>
+                          }
+                      }
+            </button>
+        </form>
+    </th>
         
-            <td>@fullLetter.Letter.Position</td>
-        
-            <td>@fullLetter.Letter.AccommodationProvision</td>
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.RemoteAreas)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
 
-            <td>
-                <ul class="list-group">
-                    @foreach (var student in fullLetter.Students)
-                    {
-                        <li class="list-group-item">@student.Name</li>
-                    }
-                </ul>
-            </td>
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Отсталый р-н @if (Model.SortingParameter == LetterSortingParameters.RemoteAreas)
+                             {
+                                 if (Model.IsSortingDirectionDesc)
+                                 {
+                                     <span>&#9660;</span>
+                                 }
+                                 else
+                                 {
+                                     <span>&#9650;</span>
+                                 }
+                             }
+            </button>
+        </form>
+    </th>
         
-            <td>@fullLetter.Letter.Note</td>
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.Base)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Базовая @if (Model.SortingParameter == LetterSortingParameters.Base)
+                        {
+                            if (Model.IsSortingDirectionDesc)
+                            {
+                                <span>&#9660;</span>
+                            }
+                            else
+                            {
+                                <span>&#9650;</span>
+                            }
+                        }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.LetterNumber)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                № письма @if (Model.SortingParameter == LetterSortingParameters.LetterNumber)
+                         {
+                             if (Model.IsSortingDirectionDesc)
+                             {
+                                 <span>&#9660;</span>
+                             }
+                             else
+                             {
+                                 <span>&#9650;</span>
+                             }
+                         }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.Date)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Дата @if (Model.SortingParameter == LetterSortingParameters.Date)
+                     {
+                         if (Model.IsSortingDirectionDesc)
+                         {
+                             <span>&#9660;</span>
+                         }
+                         else
+                         {
+                             <span>&#9650;</span>
+                         }
+                     }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.Counts)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Кол-во @if (Model.SortingParameter == LetterSortingParameters.Counts)
+                       {
+                           if (Model.IsSortingDirectionDesc)
+                           {
+                               <span>&#9660;</span>
+                           }
+                           else
+                           {
+                               <span>&#9650;</span>
+                           }
+                       }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.Position)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Должность @if (Model.SortingParameter == LetterSortingParameters.Position)
+                          {
+                              if (Model.IsSortingDirectionDesc)
+                              {
+                                  <span>&#9660;</span>
+                              }
+                              else
+                              {
+                                  <span>&#9650;</span>
+                              }
+                          }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.AccommodationProvision)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Общежитие @if (Model.SortingParameter == LetterSortingParameters.AccommodationProvision)
+                          {
+                              if (Model.IsSortingDirectionDesc)
+                              {
+                                  <span>&#9660;</span>
+                              }
+                              else
+                              {
+                                  <span>&#9650;</span>
+                              }
+                          }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.Students)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Именное @if (Model.SortingParameter == LetterSortingParameters.Students)
+                        {
+                            if (Model.IsSortingDirectionDesc)
+                            {
+                                <span>&#9660;</span>
+                            }
+                            else
+                            {
+                                <span>&#9650;</span>
+                            }
+                        }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Letter" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(LetterSortingParameters.Note)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Примичание @if (Model.SortingParameter == LetterSortingParameters.Note)
+                           {
+                               if (Model.IsSortingDirectionDesc)
+                               {
+                                   <span>&#9660;</span>
+                               }
+                               else
+                               {
+                                   <span>&#9650;</span>
+                               }
+                           }
+            </button>
+        </form>
+    </th>
+
+    <th scope="col">
+        <button class="btn btn-unstyled btn-sm text-white">
+            Действие
+        </button>
+    </th>
+</tr>
+</thead>
+<tbody>
+@foreach (var fullLetter in Model.FullLetters)
+{
+    <tr onclick="toggleHighlight(this)">
+        <th scope="row">@fullLetter.Number</th>
+
+        <td>@fullLetter.Faculty.Abbreviation</td>
+        
+        <td>
+            <ul class="list-group">
+                @foreach (var specialty in fullLetter.Specialties)
+                {
+                    <li class="list-group-item">@specialty.Value</li>
+                }
+            </ul>
+        </td>
+
+        <td>@fullLetter.Company.ShortName</td>
+        
+        <td>@fullLetter.Company.Address</td>
+
+        <td>
+            <ul class="list-group">
+                @foreach (var remoteArea in fullLetter.RemoteAreas)
+                {
+                    <li class="list-group-item">@remoteArea.Value</li>
+                }
+            </ul>
+        </td>
+
+        <td>@fullLetter.Letter.Base</td>
+        
+        <td>@fullLetter.Letter.Number</td>
+
+        <td>@fullLetter.Letter.Date.ToString("yyyy-MM-dd")</td>
+
+        <td>
+            <ul class="list-group">
+                @foreach (var count in fullLetter.Counts)
+                {
+                    <li class="list-group-item">@count.Value</li>
+                }
+            </ul>
+        </td>
+        
+        <td>@fullLetter.Letter.Position</td>
+        
+        <td>@fullLetter.Letter.AccommodationProvision</td>
+
+        <td>
+            <ul class="list-group">
+                @foreach (var student in fullLetter.Students)
+                {
+                    <li class="list-group-item">@student.Name</li>
+                }
+            </ul>
+        </td>
+        
+        <td>@fullLetter.Letter.Note</td>
             
-            <td>
-                <a @*asp-controller="" asp-action=""  asp-route-="@item.Id" *@ class="btn btn-primary m-1">
-                    <i class="fas fa-trash"></i> Удалить
-                </a>
-                <button type="button" class="btn btn-primary m-1" data-bs-toggle="modal" data-bs-target="#update" data-bs-route-id="@fullLetter.Letter.Id">
+        <td>
+            <form method="get" asp-controller="Letter" asp-action="Update">
+                <input type="hidden" name="id" value="@fullLetter.Letter.Id" />
+
+                <button type="submit" class="btn btn-primary w-100 h-100 mx-2 my-2">
                     <i class="fas fa-edit"></i> Изменить
                 </button>
-            </td>
-        </tr>
-    }
-    <tr>
-        <td colspan="15">
-            <button type="button" class="btn btn-primary w-100 h-100" data-bs-toggle="modal" data-bs-target="#createType" id="createTypeBtn">
-                <i class="fas fa-plus-circle fa-3x"></i>
-            </button>
+            </form>
+            
+            <a @*asp-controller="" asp-action=""  asp-route-="@item.Id" *@ class="btn btn-primary w-100 h-100 mx-2 my-2">
+                <i class="fas fa-trash"></i> Удалить
+            </a>
         </td>
     </tr>
-    
-    </tbody>
-    
+}
+<tr>
+    <td colspan="15">
+        <a type="button" class="btn btn-primary w-100 h-100" asp-controller="Letter" asp-action="Create" >
+            <i class="fas fa-plus-circle fa-3x"></i>
+        </a>
+    </td>
+</tr>
+</tbody>
 </table>
+
+
+@section Scripts {
+    <script>
+    function toggleHighlight(row) {
+        row.classList.toggle('table-primary');
+    }
+</script>
+}

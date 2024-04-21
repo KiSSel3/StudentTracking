@@ -900,3 +900,343 @@
 2024-04-20 23:34:28.5516 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
 2024-04-20 23:34:28.5689 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
 2024-04-20 23:34:28.5689 Info Configuration initialized.
+2024-04-21 13:17:28.5739 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 13:17:28.6166 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 13:17:28.6310 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 13:17:28.6310 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 13:17:28.6531 Info Configuration initialized.
+2024-04-21 13:20:33.6660 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 13:20:33.6772 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 13:20:33.6772 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 13:20:33.6971 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 13:20:33.7116 Info Configuration initialized.
+2024-04-21 13:55:42.3577 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 13:55:42.3659 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 13:55:42.3659 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 13:55:42.3823 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 13:55:42.3823 Info Configuration initialized.
+2024-04-21 14:02:15.3832 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:02:15.3832 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:02:15.3964 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:02:15.3964 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:02:15.4138 Info Configuration initialized.
+2024-04-21 14:09:17.5370 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:09:17.5473 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:09:17.5473 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:09:17.5612 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:09:17.5725 Info Configuration initialized.
+2024-04-21 14:09:52.8161 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:09:52.8466 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:09:52.8576 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:09:52.8576 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:09:52.8812 Info Configuration initialized.
+2024-04-21 14:10:38.3535 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:10:38.3632 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:10:38.3632 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:10:38.3779 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:10:38.3779 Info Configuration initialized.
+2024-04-21 14:10:49.1322 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:10:49.1483 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:10:49.1483 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:10:49.1683 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:10:49.1841 Info Configuration initialized.
+2024-04-21 14:15:02.9165 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:15:02.9165 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:15:02.9322 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:15:02.9322 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:15:02.9520 Info Configuration initialized.
+2024-04-21 14:24:09.0748 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:24:09.0748 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:24:09.0924 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:24:09.0924 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:24:09.1238 Info Configuration initialized.
+2024-04-21 14:47:38.6714 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:47:38.6798 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:47:38.6798 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:47:38.6798 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:47:38.7090 Info Configuration initialized.
+2024-04-21 14:53:12.7226 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:53:12.7542 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:53:12.7654 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:53:12.7750 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:53:12.7917 Info Configuration initialized.
+2024-04-21 14:55:34.3110 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:55:34.3110 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:55:34.3246 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:55:34.3246 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:55:34.3431 Info Configuration initialized.
+2024-04-21 14:59:18.8714 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 14:59:18.8819 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 14:59:18.8819 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 14:59:18.9014 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 14:59:18.9160 Info Configuration initialized.
+2024-04-21 15:50:56.1799 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 15:50:56.1907 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 15:50:56.1984 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 15:50:56.1984 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 15:50:56.2206 Info Configuration initialized.
+2024-04-21 15:54:00.3148 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 15:54:00.3240 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 15:54:00.3240 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 15:54:00.3384 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 15:54:00.3500 Info Configuration initialized.
+2024-04-21 17:09:34.5149 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 17:09:34.5230 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 17:09:34.5230 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 17:09:34.5230 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 17:09:34.5491 Info Configuration initialized.
+2024-04-21 17:30:50.7759 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 17:30:50.7759 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 17:30:50.7759 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 17:30:50.7971 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 17:30:50.8074 Info Configuration initialized.
+2024-04-21 17:48:51.1928 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 17:48:51.2040 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 17:48:51.2040 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 17:48:51.2216 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 17:48:51.2342 Info Configuration initialized.
+2024-04-21 17:57:17.5342 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 17:57:17.5412 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 17:57:17.5412 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 17:57:17.5552 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 17:57:17.5552 Info Configuration initialized.
+2024-04-21 18:58:20.9166 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 18:58:20.9166 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 18:58:20.9302 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 18:58:20.9302 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 18:58:20.9474 Info Configuration initialized.
+2024-04-21 19:01:26.9545 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:01:26.9613 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:01:26.9613 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:01:26.9727 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:01:26.9727 Info Configuration initialized.
+2024-04-21 19:02:58.6345 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:02:58.6621 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:02:58.6722 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:02:58.6722 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:02:58.6901 Info Configuration initialized.
+2024-04-21 19:33:05.8037 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:33:05.8037 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:33:05.8178 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:33:05.8178 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:33:05.8353 Info Configuration initialized.
+2024-04-21 19:41:15.3381 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:41:15.3451 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:41:15.3451 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:41:15.3577 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:41:15.3577 Info Configuration initialized.
+2024-04-21 19:42:21.8570 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:42:21.8570 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:42:21.8570 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:42:21.8764 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:42:21.8764 Info Configuration initialized.
+2024-04-21 19:49:23.2162 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:49:23.2264 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:49:23.2264 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:49:23.2409 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:49:23.2409 Info Configuration initialized.
+2024-04-21 19:49:50.9270 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:49:50.9543 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:49:50.9633 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:49:50.9633 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:49:50.9633 Info Configuration initialized.
+2024-04-21 19:52:02.2373 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:52:02.2463 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:52:02.2463 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:52:02.2614 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:52:02.2614 Info Configuration initialized.
+2024-04-21 19:52:18.0482 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:52:18.0800 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:52:18.0901 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:52:18.0901 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:52:18.1095 Info Configuration initialized.
+2024-04-21 19:55:56.8116 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:55:56.8440 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:55:56.8539 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:55:56.8539 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:55:56.8723 Info Configuration initialized.
+2024-04-21 19:57:09.6427 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:57:09.6686 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:57:09.6777 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:57:09.6777 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:57:09.6955 Info Configuration initialized.
+2024-04-21 19:58:36.7849 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 19:58:36.7849 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 19:58:36.7849 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 19:58:36.8046 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 19:58:36.8046 Info Configuration initialized.
+2024-04-21 20:00:31.6906 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:00:31.6978 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:00:31.6978 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:00:31.7120 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:00:31.7120 Info Configuration initialized.
+2024-04-21 20:01:31.1484 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:01:31.1831 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:01:31.1958 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:01:31.1958 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:01:31.2157 Info Configuration initialized.
+2024-04-21 20:02:11.5915 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:02:11.6182 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:02:11.6182 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:02:11.6182 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:02:11.6431 Info Configuration initialized.
+2024-04-21 20:03:48.4084 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:03:48.4339 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:03:48.4339 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:03:48.4494 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:03:48.4494 Info Configuration initialized.
+2024-04-21 20:04:17.0994 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:04:17.1258 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:04:17.1357 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:04:17.1357 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:04:17.1530 Info Configuration initialized.
+2024-04-21 20:05:21.4165 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:05:21.4251 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:05:21.4300 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:05:21.4300 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:05:21.4300 Info Configuration initialized.
+2024-04-21 20:05:42.4991 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:05:42.5251 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:05:42.5251 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:05:42.5407 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:05:42.5526 Info Configuration initialized.
+2024-04-21 20:07:58.1153 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:07:58.1153 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:07:58.1260 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:07:58.1260 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:07:58.1400 Info Configuration initialized.
+2024-04-21 20:18:57.0707 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:18:57.0707 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:18:57.0831 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:18:57.0831 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:18:57.0991 Info Configuration initialized.
+2024-04-21 20:21:19.0859 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:21:19.0930 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:21:19.0930 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:21:19.0930 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:21:19.1163 Info Configuration initialized.
+2024-04-21 20:23:53.2128 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:23:53.2128 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:23:53.2128 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:23:53.2345 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:23:53.2345 Info Configuration initialized.
+2024-04-21 20:26:33.8814 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:26:33.8913 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:26:33.8913 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:26:33.9076 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:26:33.9192 Info Configuration initialized.
+2024-04-21 20:27:27.1915 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:27:27.1990 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:27:27.1990 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:27:27.2119 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:27:27.2119 Info Configuration initialized.
+2024-04-21 20:27:56.0181 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:27:56.0264 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:27:56.0264 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:27:56.0387 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:27:56.0387 Info Configuration initialized.
+2024-04-21 20:29:27.3656 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:29:27.3733 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:29:27.3733 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:29:27.3862 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:29:27.3965 Info Configuration initialized.
+2024-04-21 20:32:07.6213 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:32:07.6291 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:32:07.6345 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:32:07.6345 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:32:07.6345 Info Configuration initialized.
+2024-04-21 20:39:36.2920 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:39:36.2920 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:39:36.3037 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:39:36.3037 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:39:36.3193 Info Configuration initialized.
+2024-04-21 20:42:17.3141 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:42:17.3242 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:42:17.3242 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:42:17.3387 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:42:17.3496 Info Configuration initialized.
+2024-04-21 20:46:05.7521 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:46:05.7595 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:46:05.7595 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:46:05.7595 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:46:05.7822 Info Configuration initialized.
+2024-04-21 20:47:43.8505 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:47:43.8505 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:47:43.8619 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:47:43.8679 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:47:43.8679 Info Configuration initialized.
+2024-04-21 20:49:45.3715 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:49:45.3814 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:49:45.3814 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:49:45.3814 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:49:45.4040 Info Configuration initialized.
+2024-04-21 20:50:35.4509 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:50:35.4509 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:50:35.4656 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:50:35.4656 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:50:35.4814 Info Configuration initialized.
+2024-04-21 20:52:42.2211 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:52:42.2285 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:52:42.2285 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:52:42.2406 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:52:42.2406 Info Configuration initialized.
+2024-04-21 20:58:41.6152 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:58:41.6152 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:58:41.6293 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:58:41.6293 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:58:41.6471 Info Configuration initialized.
+2024-04-21 20:59:34.7866 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 20:59:34.7866 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 20:59:34.7990 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 20:59:34.7990 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 20:59:34.8155 Info Configuration initialized.
+2024-04-21 21:00:08.7621 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:00:08.7621 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:00:08.7738 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:00:08.7738 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:00:08.7889 Info Configuration initialized.
+2024-04-21 21:00:34.8272 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:00:34.8272 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:00:34.8390 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:00:34.8390 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:00:34.8584 Info Configuration initialized.
+2024-04-21 21:05:39.9675 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:05:39.9675 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:05:39.9675 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:05:39.9841 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:05:39.9841 Info Configuration initialized.
+2024-04-21 21:19:49.0454 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:19:49.0542 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:19:49.0542 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:19:49.0733 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:19:49.0864 Info Configuration initialized.
+2024-04-21 21:21:31.5848 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:21:31.6211 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:21:31.6365 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:21:31.6365 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:21:31.6640 Info Configuration initialized.
+2024-04-21 21:25:10.5609 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:25:10.5609 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:25:10.5742 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:25:10.5742 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:25:10.5919 Info Configuration initialized.
+2024-04-21 21:26:46.0957 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:26:46.1302 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:26:46.1421 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:26:46.1498 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:26:46.1498 Info Configuration initialized.
+2024-04-21 21:29:27.9011 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:29:27.9116 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:29:27.9192 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:29:27.9297 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:29:27.9435 Info Configuration initialized.
+2024-04-21 21:32:31.8496 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:32:31.8584 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:32:31.8584 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:32:31.8736 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:32:31.8844 Info Configuration initialized.
+2024-04-21 21:32:43.3077 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-04-21 21:32:43.3077 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-04-21 21:32:43.3257 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-04-21 21:32:43.3257 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=D:\Programming\BusinessProject\StudentTracking\StudentTracking\StudentTracking\NLog.config
+2024-04-21 21:32:43.3498 Info Configuration initialized.

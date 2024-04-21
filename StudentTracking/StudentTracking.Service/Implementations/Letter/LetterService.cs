@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.JavaScript;
 using Microsoft.Extensions.Logging;
 using StudentTracking.DataManager.Interfaces;
 using StudentTracking.DataManager.Interfaces.Letter;
@@ -5,6 +6,7 @@ using StudentTracking.Domain.Entities.Letter;
 using StudentTracking.Domain.Entities.Shared;
 using StudentTracking.Service.Interfaces.Letter;
 using StudentTracking.Shared.Models;
+using StudentTracking.Shared.ViewModels;
 
 namespace StudentTracking.Service.Implementations.Letter;
 
@@ -62,5 +64,131 @@ public class LetterService(
         });
 
         return fullLetters;
+    }
+
+    public async Task UpdateLetterAsync(UpdateLetterFormViewModel updateLetterFormViewModel)
+    {
+        var currentLetter = await _letterRepository.GetByIdAsync(updateLetterFormViewModel.Id);
+        if (currentLetter is null)
+        {
+            throw new Exception("Letter not found");
+        }
+
+        currentLetter.Number = updateLetterFormViewModel.Number;
+        currentLetter.Date = updateLetterFormViewModel.Date;
+        currentLetter.Position = updateLetterFormViewModel.Position;
+        currentLetter.AccommodationProvision = updateLetterFormViewModel.AccommodationProvision;
+        currentLetter.Note = updateLetterFormViewModel.Note;
+        currentLetter.Base = updateLetterFormViewModel.Base;
+        currentLetter.FacultyId = updateLetterFormViewModel.FacultyId;
+        currentLetter.CompanyId = updateLetterFormViewModel.CompanyId;
+
+        await _letterRepository.UpdateAsync(currentLetter);
+
+        var students = await _studentRepository.GetByLetterIdAsync(updateLetterFormViewModel.Id);
+        foreach (var item in students)
+        {
+            await _studentRepository.DeleteAsync(item);
+        }
+
+        if (updateLetterFormViewModel.Students is not null)
+        {
+            foreach (var item in updateLetterFormViewModel.Students)
+            {
+                await _studentRepository.CreateAsync(new StudentEntity { Name = item, LetterId = currentLetter.Id });
+            }
+        }
+
+        var counts = await _countRepository.GetByLetterIdAsync(updateLetterFormViewModel.Id);
+        foreach (var item in counts)
+        {
+            await _countRepository.DeleteAsync(item);
+        }
+        if (updateLetterFormViewModel.Counts is not null)
+        {
+            foreach (var item in updateLetterFormViewModel.Counts)
+            {
+                await _countRepository.CreateAsync(new CountEntity() { Value = item, LetterId = currentLetter.Id });
+            }
+        }
+
+        var remoteAreas = await _remoteAreaRepository.GetByLetterIdAsync(updateLetterFormViewModel.Id);
+        foreach (var item in remoteAreas)
+        {
+            await _remoteAreaRepository.DeleteAsync(item);
+        }
+        if (updateLetterFormViewModel.RemoteAreas is not null)
+        {
+            foreach (var item in updateLetterFormViewModel.RemoteAreas)
+            {
+                await _remoteAreaRepository.CreateAsync(new RemoteAreaEntity()
+                    { Value = item, LetterId = currentLetter.Id });
+            }
+        }
+
+        var specialities = await _specialtyRepository.GetByLetterIdAsync(updateLetterFormViewModel.Id);
+        foreach (var item in specialities)
+        {
+            await _specialtyRepository.DeleteAsync(item);
+        }
+        if (updateLetterFormViewModel.Specialities is not null)
+        {
+            foreach (var item in updateLetterFormViewModel.Specialities)
+            {
+                await _specialtyRepository.CreateAsync(new SpecialtyEntity()
+                    { Value = item, LetterId = currentLetter.Id });
+            }
+        }
+    }
+
+    public async Task CreateLetterAsync(NewLetterFormViewModel newLetterFormViewModel)
+    {
+        var newLetter = new LetterEntity()
+        {
+            Number = newLetterFormViewModel.Number ?? "",
+            Date = newLetterFormViewModel.Date,
+            Position = newLetterFormViewModel.Position ?? "",
+            AccommodationProvision = newLetterFormViewModel.AccommodationProvision ?? "",
+            Note = newLetterFormViewModel.Note ?? "",
+            Base = newLetterFormViewModel.Base ?? "",
+            FacultyId = newLetterFormViewModel.FacultyId,
+            CompanyId = newLetterFormViewModel.CompanyId
+        };
+
+        await _letterRepository.CreateAsync(newLetter);
+        
+        if (newLetterFormViewModel.Students is not null)
+        {
+            foreach (var item in newLetterFormViewModel.Students)
+            {
+                await _studentRepository.CreateAsync(new StudentEntity { Name = item, LetterId = newLetter.Id });
+            }
+        }
+        
+        if (newLetterFormViewModel.Counts is not null)
+        {
+            foreach (var item in newLetterFormViewModel.Counts)
+            {
+                await _countRepository.CreateAsync(new CountEntity() { Value = item, LetterId = newLetter.Id });
+            }
+        }
+
+        if (newLetterFormViewModel.RemoteAreas is not null)
+        {
+            foreach (var item in newLetterFormViewModel.RemoteAreas)
+            {
+                await _remoteAreaRepository.CreateAsync(new RemoteAreaEntity()
+                    { Value = item, LetterId = newLetter.Id });
+            }
+        }
+
+        if (newLetterFormViewModel.Specialities is not null)
+        {
+            foreach (var item in newLetterFormViewModel.Specialities)
+            {
+                await _specialtyRepository.CreateAsync(new SpecialtyEntity()
+                    { Value = item, LetterId = newLetter.Id });
+            }
+        }
     }
 }

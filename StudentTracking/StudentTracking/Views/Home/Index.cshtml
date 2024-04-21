@@ -1,8 +1,38 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form</title>
+</head>
+<body>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form id="dynamicForm">
+    <div id="objectFields">
+        <!-- Сюда будут добавляться поля для объектов -->
+    </div>
+    <button type="button" onclick="addObjectField()">Добавить объект</button>
+    <button type="submit">Отправить</button>
+</form>
+
+<script>
+    let objectId = 0;
+
+    function addObjectField() {
+        const objectFields = document.getElementById('objectFields');
+        const newField = document.createElement('div');
+        newField.innerHTML = `
+            <input type="text" name="object${objectId}" placeholder="Введите объект ${objectId + 1}">
+            <button type="button" onclick="removeObjectField(this)">Удалить</button>
+        `;
+        objectFields.appendChild(newField);
+        objectId++;
+    }
+
+    function removeObjectField(button) {
+        button.parentElement.remove();
+    }
+</script>
+
+</body>
+</html>

@@ -35,4 +35,15 @@ public class FacultyService(IBaseRepository<FacultyEntity> facultyRepository, IL
 
         await _facultyRepository.DeleteAsync(faculty);
     }
+
+    public async Task<FacultyEntity> GetFacultyById(Guid id)
+    {
+        var faculty = await _facultyRepository.GetByIdAsync(id);
+        if (faculty is null)
+        {
+            HandleError($"Company with id: {id} not found");
+        }
+
+        return faculty;
+    }
 }

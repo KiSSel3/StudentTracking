@@ -8,12 +8,19 @@ using StudentTracking.Shared.ViewModels;
 
 namespace StudentTracking.Controllers;
 
-public class LetterController(ILetterService letterService, IFacultyService facultyService, ICompanyService companyService) : Controller
+public class LetterController(
+    ILetterService letterService,
+    IFacultyService facultyService,
+    ICompanyService companyService,
+    ILetterFilteringService filteringService,
+    ILetterSortingService sortingService) : Controller
 {
     private readonly ILetterService _letterService = letterService;
     private readonly ICompanyService _companyService = companyService;
     private readonly IFacultyService _facultyService = facultyService;
-
+    private readonly ILetterFilteringService _filteringService = filteringService;
+    private readonly ILetterSortingService _sortingService = sortingService;
+    
     [HttpGet]
     public async Task<IActionResult> Index()
     {
@@ -26,8 +33,10 @@ public class LetterController(ILetterService letterService, IFacultyService facu
             {
                 throw new Exception("Ошибка получения писем");
             }
+
+            await GetSupportingInformation(letterViewModel);
             
-            return await ShowView(letterViewModel);
+            return View("Index", letterViewModel);
         }
         catch (Exception ex)
         {
@@ -37,7 +46,7 @@ public class LetterController(ILetterService letterService, IFacultyService facu
     
 
     [HttpPost]
-    public async Task<IActionResult> Index(Guid? facultyId)
+    public async Task<IActionResult> Index(LetterFormViewModel letterFormViewModel)
     {
         try
         {
@@ -49,47 +58,23 @@ public class LetterController(ILetterService letterService, IFacultyService facu
                 throw new Exception("Ошибка получения писем");
             }
 
-            if (facultyId is not null)
+            if (letterFormViewModel.FacultyId is not null)
             {
-                SortedByFaculty(letterViewModel, facultyId.Value);
+                letterViewModel.CurrentFaculty = await _facultyService.GetFacultyById(letterFormViewModel.FacultyId.Value);
+                
+                letterViewModel.FullLetters = _filteringService.ByFaculty(letterFormViewModel.FacultyId.Value, letterViewModel.FullLetters);
             }
-            
-            return await ShowView(letterViewModel);
-        }
-        catch (Exception ex)
-        {
-            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
-        }
-    }
 
-    //TODO: переделать в сервис
-    private async Task SortedByFaculty(LetterViewModel letterViewModel, Guid facultyId)
-    {
-        
-        
-        //letterViewModel.CurrentFaculty = await _facultyService.;
+            if (!string.IsNullOrEmpty(letterFormViewModel.KeywordSearch))
+            {
+                letterViewModel.FullLetters = _filteringService.KeywordSearch(letterFormViewModel.KeywordSearch, letterViewModel.FullLetters);
+            }
 
-        letterViewModel.FullLetters = letterViewModel.FullLetters.Where(item => item.Faculty.Equals(facultyId));
-    }
-    
-    private async Task<IActionResult> ShowView(LetterViewModel letterViewModel)
-    {
-        try
-        {
-            var companies = await _companyService.GetCompanyListAsync();
-            if (companies is null)
-            {
-                throw new Exception("Ошибка получения компаний");
-            }
-            letterViewModel.CompanySelectList = new SelectList(companies.ToList(), "Id", "ShortName");
-            
-            var faculties = await _facultyService.GetFacultyListAsync();
-            if (faculties is null)
-            {
-                throw new Exception("Ошибка получения факультетов");
-            }
-            letterViewModel.FacultySelectList = new SelectList(faculties.ToList(), "Id", "FullName");
-            letterViewModel.Faculties = faculties;
+            letterViewModel.FullLetters = _sortingService.SortLetters(letterViewModel.FullLetters,
+                letterFormViewModel.SortingParameter, letterFormViewModel.IsSortingDirectionDesc);
+
+            await GetSupportingInformation(letterViewModel);
+            await UpdateLetterViewModel(letterViewModel, letterFormViewModel);
             
             return View("Index", letterViewModel);
         }
@@ -97,5 +82,122 @@ public class LetterController(ILetterService letterService, IFacultyService facu
         {
             return View("Error", new ErrorViewModel() { RequestId = ex.Message });
         }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Create()
+    {
+        try
+        {
+            NewLetterViewModel newLetterViewModel = new NewLetterViewModel();
+            
+            var companies = await _companyService.GetCompanyListAsync();
+            if (companies is null)
+            {
+                throw new Exception("Ошибка получения компаний");
+            }
+            newLetterViewModel.CompanySelectList = new SelectList(companies.ToList(), "Id", "ShortName");
+            
+            var faculties = await _facultyService.GetFacultyListAsync();
+            if (faculties is null)
+            {
+                throw new Exception("Ошибка получения факультетов");
+            }
+            newLetterViewModel.FacultySelectList = new SelectList(faculties.ToList(), "Id", "FullName");
+            
+            return View("Create", newLetterViewModel);
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Create(NewLetterFormViewModel newLetterFormViewModel)
+    {
+        /*try
+        {
+            await _letterService.CreateLetterAsync(newLetterFormViewModel);
+            
+            return await Index();
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }*/
+        
+        await _letterService.CreateLetterAsync(newLetterFormViewModel);
+            
+        return await Index();
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> Update(Guid id)
+    {
+        try
+        {
+            UpdateLetterViewModel updateLetterViewModel = new UpdateLetterViewModel();
+            
+            var fullLetters = await _letterService.GetFullLetterListAsync();
+            updateLetterViewModel.FullLetter = fullLetters.FirstOrDefault(fl => fl.Letter.Id.Equals(id));
+            if (updateLetterViewModel.FullLetter is null)
+            {
+                throw new Exception("Letter not found");
+            }
+            
+            var companies = await _companyService.GetCompanyListAsync();
+            if (companies is null)
+            {
+                throw new Exception("Ошибка получения компаний");
+            }
+            updateLetterViewModel.CompanySelectList = new SelectList(companies.ToList(), "Id", "ShortName");
+            
+            var faculties = await _facultyService.GetFacultyListAsync();
+            if (faculties is null)
+            {
+                throw new Exception("Ошибка получения факультетов");
+            }
+            updateLetterViewModel.FacultySelectList = new SelectList(faculties.ToList(), "Id", "FullName");
+            
+            return View("Edit", updateLetterViewModel);
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Update(UpdateLetterFormViewModel updateLetterFormViewModel)
+    {
+        try
+        {
+            await _letterService.UpdateLetterAsync(updateLetterFormViewModel);
+            
+            return await Index();
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    private async Task GetSupportingInformation(LetterViewModel letterViewModel)
+    {
+        var faculties = await _facultyService.GetFacultyListAsync();
+        if (faculties is null)
+        {
+            throw new Exception("Ошибка получения факультетов");
+        }
+
+        letterViewModel.Faculties = faculties;
+    }
+
+    private async Task UpdateLetterViewModel(LetterViewModel letterViewModel, LetterFormViewModel letterFormViewModel)
+    {
+        letterViewModel.SortingParameter = letterFormViewModel.SortingParameter;
+        letterViewModel.IsSortingDirectionDesc = letterFormViewModel.IsSortingDirectionDesc;
+        letterViewModel.KeywordSearch = letterFormViewModel.KeywordSearch ?? "";
     }
 }
