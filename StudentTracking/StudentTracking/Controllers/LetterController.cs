@@ -114,9 +114,24 @@ public class LetterController(
     }
     
     [HttpPost]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        try
+        {
+            await _letterService.DeleteLetterAsync(id);
+            
+            return await Index();
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    [HttpPost]
     public async Task<IActionResult> Create(NewLetterFormViewModel newLetterFormViewModel)
     {
-        /*try
+        try
         {
             await _letterService.CreateLetterAsync(newLetterFormViewModel);
             
@@ -125,11 +140,7 @@ public class LetterController(
         catch (Exception ex)
         {
             return View("Error", new ErrorViewModel() { RequestId = ex.Message });
-        }*/
-        
-        await _letterService.CreateLetterAsync(newLetterFormViewModel);
-            
-        return await Index();
+        }
     }
     
     [HttpGet]

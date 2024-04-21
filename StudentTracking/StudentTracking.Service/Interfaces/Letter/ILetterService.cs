@@ -11,4 +11,5 @@ public interface ILetterService
 
     public Task UpdateLetterAsync(UpdateLetterFormViewModel updateLetterFormViewModel);
     public Task CreateLetterAsync(NewLetterFormViewModel newLetterFormViewModel);
+    public Task DeleteLetterAsync(Guid id);
 }

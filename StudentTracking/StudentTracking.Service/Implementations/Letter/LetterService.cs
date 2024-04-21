@@ -191,4 +191,39 @@ public class LetterService(
             }
         }
     }
+
+    public async Task DeleteLetterAsync(Guid id)
+    {
+        var currentLetter = await _letterRepository.GetByIdAsync(id);
+        if (currentLetter is null)
+        {
+            throw new Exception("Letter not found");
+        }
+
+        var students = await _studentRepository.GetByLetterIdAsync(id);
+        foreach (var item in students)
+        {
+            await _studentRepository.DeleteAsync(item);
+        }
+
+        var counts = await _countRepository.GetByLetterIdAsync(id);
+        foreach (var item in counts)
+        {
+            await _countRepository.DeleteAsync(item);
+        }
+
+        var remoteAreas = await _remoteAreaRepository.GetByLetterIdAsync(id);
+        foreach (var item in remoteAreas)
+        {
+            await _remoteAreaRepository.DeleteAsync(item);
+        }
+
+        var specialities = await _specialtyRepository.GetByLetterIdAsync(id);
+        foreach (var item in specialities)
+        {
+            await _specialtyRepository.DeleteAsync(item);
+        }
+
+        await _letterRepository.DeleteAsync(currentLetter);
+    }
 }
