@@ -74,12 +74,12 @@ public class LetterService(
             throw new Exception("Letter not found");
         }
 
-        currentLetter.Number = updateLetterFormViewModel.Number;
+        currentLetter.Number = updateLetterFormViewModel.Number ?? "";
         currentLetter.Date = updateLetterFormViewModel.Date;
-        currentLetter.Position = updateLetterFormViewModel.Position;
-        currentLetter.AccommodationProvision = updateLetterFormViewModel.AccommodationProvision;
-        currentLetter.Note = updateLetterFormViewModel.Note;
-        currentLetter.Base = updateLetterFormViewModel.Base;
+        currentLetter.Position = updateLetterFormViewModel.Position ?? "";
+        currentLetter.AccommodationProvision = updateLetterFormViewModel.AccommodationProvision ?? "";
+        currentLetter.Note = updateLetterFormViewModel.Note ?? "";
+        currentLetter.Base = updateLetterFormViewModel.Base ?? "";
         currentLetter.FacultyId = updateLetterFormViewModel.FacultyId;
         currentLetter.CompanyId = updateLetterFormViewModel.CompanyId;
 
@@ -90,12 +90,14 @@ public class LetterService(
         {
             await _studentRepository.DeleteAsync(item);
         }
-
         if (updateLetterFormViewModel.Students is not null)
         {
             foreach (var item in updateLetterFormViewModel.Students)
             {
-                await _studentRepository.CreateAsync(new StudentEntity { Name = item, LetterId = currentLetter.Id });
+                if (!string.IsNullOrEmpty(item))
+                {
+                    await _studentRepository.CreateAsync(new StudentEntity { Name = item, LetterId = currentLetter.Id });
+                }
             }
         }
 
@@ -121,8 +123,11 @@ public class LetterService(
         {
             foreach (var item in updateLetterFormViewModel.RemoteAreas)
             {
-                await _remoteAreaRepository.CreateAsync(new RemoteAreaEntity()
-                    { Value = item, LetterId = currentLetter.Id });
+                if (!string.IsNullOrEmpty(item))
+                {
+                    await _remoteAreaRepository.CreateAsync(new RemoteAreaEntity()
+                        { Value = item, LetterId = currentLetter.Id });
+                }
             }
         }
 
@@ -135,8 +140,11 @@ public class LetterService(
         {
             foreach (var item in updateLetterFormViewModel.Specialities)
             {
-                await _specialtyRepository.CreateAsync(new SpecialtyEntity()
-                    { Value = item, LetterId = currentLetter.Id });
+                if (!string.IsNullOrEmpty(item))
+                {
+                    await _specialtyRepository.CreateAsync(new SpecialtyEntity()
+                        { Value = item, LetterId = currentLetter.Id });
+                }
             }
         }
     }
@@ -161,7 +169,10 @@ public class LetterService(
         {
             foreach (var item in newLetterFormViewModel.Students)
             {
-                await _studentRepository.CreateAsync(new StudentEntity { Name = item, LetterId = newLetter.Id });
+                if (!string.IsNullOrEmpty(item))
+                {
+                    await _studentRepository.CreateAsync(new StudentEntity { Name = item, LetterId = newLetter.Id });
+                }
             }
         }
         
@@ -177,8 +188,11 @@ public class LetterService(
         {
             foreach (var item in newLetterFormViewModel.RemoteAreas)
             {
-                await _remoteAreaRepository.CreateAsync(new RemoteAreaEntity()
-                    { Value = item, LetterId = newLetter.Id });
+                if (!string.IsNullOrEmpty(item))
+                {
+                    await _remoteAreaRepository.CreateAsync(new RemoteAreaEntity()
+                        { Value = item, LetterId = newLetter.Id });
+                }
             }
         }
 
@@ -186,8 +200,11 @@ public class LetterService(
         {
             foreach (var item in newLetterFormViewModel.Specialities)
             {
-                await _specialtyRepository.CreateAsync(new SpecialtyEntity()
-                    { Value = item, LetterId = newLetter.Id });
+                if (!string.IsNullOrEmpty(item))
+                {
+                    await _specialtyRepository.CreateAsync(new SpecialtyEntity()
+                        { Value = item, LetterId = newLetter.Id });
+                }
             }
         }
     }

@@ -34,7 +34,7 @@ internal class Program
         
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Letter}/{action=Index}/{id?}");
+            pattern: "{controller=Contract}/{action=Index}/{id?}");
 
         app.Run();
     }

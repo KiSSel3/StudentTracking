@@ -1,0 +1,467 @@
+@using StudentTracking.Domain.Enums
+@model StudentTracking.Shared.ViewModels.ContractViewModel
+
+<table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
+<caption>
+    <div class="row align-items-center">
+        <div class="col-2 border-2">
+            <ul class="nav">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"> Выбрать факультет: @(Model.CurrentFaculty?.Abbreviation ?? "Все")</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <form method="post" asp-controller="Contract" asp-action="Index">
+                                <input type="hidden" name="FacultyId" value="@null" />
+                                <input type="hidden" name="SortingParameter" value="@Model.SortingParameter" />
+                                <input type="hidden" name="IsSortingDirectionDesc" value="@Model.IsSortingDirectionDesc" />
+                                <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+                                <button type="submit" class="dropdown-item">Все</button>
+                            </form>
+                        </li>
+                        @foreach (var item in Model.Faculties)
+                        {
+                            <li>
+                                <form method="post" asp-controller="Contract" asp-action="Index">
+                                    <input type="hidden" name="FacultyId" value="@item.Id" />
+                                    <input type="hidden" name="SortingParameter" value="@Model.SortingParameter" />
+                                    <input type="hidden" name="IsSortingDirectionDesc" value="@Model.IsSortingDirectionDesc" />
+                                    <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+                                    <button type="submit" class="dropdown-item">@item.Abbreviation</button>
+                                </form>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col">
+            <form method="post" asp-controller="Contract" asp-action="Index" class="row g-3">
+                <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+                <input type="hidden" name="SortingParameter" value="@Model.SortingParameter" />
+                <input type="hidden" name="IsSortingDirectionDesc" value="@Model.IsSortingDirectionDesc" />
+                    
+                <div class="col-auto">
+                    <label for="keywordSearch" class="visually-hidden">Ключевое слово:</label>
+                    <input type="text" id="keywordSearch" name="KeywordSearch" class="form-control" placeholder="Введите ключевое слово" value="@Model.KeywordSearch">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Поиск
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</caption>
+
+    <thead class="table-dark">
+<tr>
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.Number)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                № @if (Model.SortingParameter == ContractSortingParameters.Number)
+                  {
+                      if (Model.IsSortingDirectionDesc)
+                      {
+                          <span>&#9660;</span>
+                      }
+                      else
+                      {
+                          <span>&#9650;</span>
+                      }
+                  }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.Faculty)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Факультет @if (Model.SortingParameter == ContractSortingParameters.Faculty)
+                          {
+                              if (Model.IsSortingDirectionDesc)
+                              {
+                                  <span>&#9660;</span>
+                              }
+                              else
+                              {
+                                  <span>&#9650;</span>
+                              }
+                          }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.CompanyShortName)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Имя @if (Model.SortingParameter == ContractSortingParameters.CompanyShortName)
+                              {
+                                  if (Model.IsSortingDirectionDesc)
+                                  {
+                                      <span>&#9660;</span>
+                                  }
+                                  else
+                                  {
+                                      <span>&#9650;</span>
+                                  }
+                              }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.CompanyAddress)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Адрес @if (Model.SortingParameter == ContractSortingParameters.CompanyAddress)
+                            {
+                                if (Model.IsSortingDirectionDesc)
+                                {
+                                    <span>&#9660;</span>
+                                }
+                                else
+                                {
+                                    <span>&#9650;</span>
+                                }
+                            }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.CompanyFullName)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Полное имя @if (Model.SortingParameter == ContractSortingParameters.CompanyFullName)
+                      {
+                          if (Model.IsSortingDirectionDesc)
+                          {
+                              <span>&#9660;</span>
+                          }
+                          else
+                          {
+                              <span>&#9650;</span>
+                          }
+                      }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.EducationProfile)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Профиль @if (Model.SortingParameter == ContractSortingParameters.EducationProfile)
+                             {
+                                 if (Model.IsSortingDirectionDesc)
+                                 {
+                                     <span>&#9660;</span>
+                                 }
+                                 else
+                                 {
+                                     <span>&#9650;</span>
+                                 }
+                             }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.Director)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Директор @if (Model.SortingParameter == ContractSortingParameters.Director)
+                        {
+                            if (Model.IsSortingDirectionDesc)
+                            {
+                                <span>&#9660;</span>
+                            }
+                            else
+                            {
+                                <span>&#9650;</span>
+                            }
+                        }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.Agency)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Ведомство @if (Model.SortingParameter == ContractSortingParameters.Agency)
+                         {
+                             if (Model.IsSortingDirectionDesc)
+                             {
+                                 <span>&#9660;</span>
+                             }
+                             else
+                             {
+                                 <span>&#9650;</span>
+                             }
+                         }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.ContractNumber)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Номер @if (Model.SortingParameter == ContractSortingParameters.ContractNumber)
+                     {
+                         if (Model.IsSortingDirectionDesc)
+                         {
+                             <span>&#9660;</span>
+                         }
+                         else
+                         {
+                             <span>&#9650;</span>
+                         }
+                     }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.Status)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Статус @if (Model.SortingParameter == ContractSortingParameters.Status)
+                       {
+                           if (Model.IsSortingDirectionDesc)
+                           {
+                               <span>&#9660;</span>
+                           }
+                           else
+                           {
+                               <span>&#9650;</span>
+                           }
+                       }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.StartDate)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Дата начала @if (Model.SortingParameter == ContractSortingParameters.StartDate)
+                          {
+                              if (Model.IsSortingDirectionDesc)
+                              {
+                                  <span>&#9660;</span>
+                              }
+                              else
+                              {
+                                  <span>&#9650;</span>
+                              }
+                          }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.EndDate)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Дата окончания @if (Model.SortingParameter == ContractSortingParameters.EndDate)
+                          {
+                              if (Model.IsSortingDirectionDesc)
+                              {
+                                  <span>&#9660;</span>
+                              }
+                              else
+                              {
+                                  <span>&#9650;</span>
+                              }
+                          }
+            </button>
+        </form>
+    </th>
+        
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.SpecialtyCode)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Код специальности @if (Model.SortingParameter == ContractSortingParameters.SpecialtyCode)
+                        {
+                            if (Model.IsSortingDirectionDesc)
+                            {
+                                <span>&#9660;</span>
+                            }
+                            else
+                            {
+                                <span>&#9650;</span>
+                            }
+                        }
+            </button>
+        </form>
+    </th>
+
+    <th scope="col">
+        <form method="post" asp-controller="Contract" asp-action="Index">
+            <input type="hidden" name="FacultyId" value="@Model.CurrentFaculty?.Id" />
+            <input type="hidden" name="SortingParameter" value="@(ContractSortingParameters.Counts)" />
+            <input type="hidden" name="IsSortingDirectionDesc" value="@(Model.IsSortingDirectionDesc ? "false" : "true")" />
+            <input type="hidden" name="KeywordSearch" value="@Model.KeywordSearch" />
+
+            <button type="submit" class="btn btn-unstyled btn-sm text-white">
+                Количество @if (Model.SortingParameter == ContractSortingParameters.Counts)
+                           {
+                               if (Model.IsSortingDirectionDesc)
+                               {
+                                   <span>&#9660;</span>
+                               }
+                               else
+                               {
+                                   <span>&#9650;</span>
+                               }
+                           }
+            </button>
+        </form>
+    </th>
+    
+    <th scope="col">
+        <button class="btn btn-unstyled btn-sm text-white">
+            Действие
+        </button>
+    </th>
+</tr>
+</thead>
+<tbody>
+@foreach (var fullContract in Model.FullContracts)
+{
+    <tr onclick="toggleHighlight(this)">
+        <th scope="row">@fullContract.Number</th>
+
+        <td>@fullContract.Faculty.Abbreviation</td>
+
+        <td>@fullContract.Company.ShortName</td>
+        
+        <td>@fullContract.Company.Address</td>
+        
+        <td>@fullContract.Company.FullName</td>
+        
+        <td>@fullContract.Contract.EducationProfile</td>
+        
+        <td>@fullContract.Company.Director</td>
+        
+        <td>@fullContract.Contract.Agency</td>
+
+        <td>@fullContract.Contract.Number</td>
+
+        <td>@fullContract.Contract.Status</td>
+
+        <td>@fullContract.Contract.StartDate</td>
+
+        <td>@fullContract.Contract.EndDate</td>
+
+        <td>@fullContract.Contract.SpecialtyCcode</td>
+
+        <td>
+            <ul class="list-group">
+                @foreach (var item in fullContract.AnnualNumberPeoples)
+                {
+                    <li class="list-group-item">@item.Year : @item.Count</li>
+                }
+            </ul>
+        </td>
+        
+            
+        <td>
+            <form method="get" asp-controller="Contract" asp-action="Update">
+                <input type="hidden" name="id" value="@fullContract.Contract.Id" />
+
+                <button type="submit" class="btn btn-primary w-100 h-100 mx-2 my-2">
+                    <i class="fas fa-edit"></i> Изменить
+                </button>
+            </form>
+
+            <form method="post" asp-controller="Contract" asp-action="Delete" onsubmit="return confirm('Вы уверены, что хотите удалить письмо?');">
+                <input type="hidden" name="id" value="@fullContract.Contract.Id" />
+
+                <button type="submit" class="btn btn-primary w-100 h-100 mx-2 my-2">
+                    <i class="fas fa-trash"></i> Удалить
+                </button>
+            </form>
+        </td>
+    </tr>
+}
+<tr>
+    <td colspan="15">
+        <a type="button" class="btn btn-primary w-100 h-100" asp-controller="Contract" asp-action="Create" >
+            <i class="fas fa-plus-circle fa-3x"></i>
+        </a>
+    </td>
+</tr>
+</tbody>
+</table>
+
+
+@section Scripts {
+    <script>
+    function toggleHighlight(row) {
+        row.classList.toggle('table-primary');
+    }
+</script>
+}

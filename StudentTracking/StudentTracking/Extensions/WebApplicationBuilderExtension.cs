@@ -13,9 +13,11 @@ using StudentTracking.DataManager.Interfaces.Letter;
 using StudentTracking.DataManager.Interfaces.Main;
 using StudentTracking.DataManager.Interfaces.Supporting;
 using StudentTracking.Domain.Entities.Shared;
+using StudentTracking.Service.Implementations.Contract;
 using StudentTracking.Service.Implementations.Letter;
 using StudentTracking.Service.Implementations.Main;
 using StudentTracking.Service.Implementations.Shared;
+using StudentTracking.Service.Interfaces.Contract;
 using StudentTracking.Service.Interfaces.Letter;
 using StudentTracking.Service.Interfaces.Main;
 using StudentTracking.Service.Interfaces.Shared;
@@ -50,6 +52,7 @@ public static class WebApplicationBuilderExtension
         builder.Services.AddScoped<IUserService, UserService>();
 
         builder.Services.AddScoped<ILetterService, LetterService>();
+        builder.Services.AddScoped<IContractService, ContractService>();
         
         builder.Services.AddScoped<ICompanyService, CompanyService>();
         builder.Services.AddScoped<IFacultyService, FacultyService>();
