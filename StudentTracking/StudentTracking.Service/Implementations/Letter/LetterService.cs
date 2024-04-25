@@ -71,7 +71,7 @@ public class LetterService(
         var currentLetter = await _letterRepository.GetByIdAsync(updateLetterFormViewModel.Id);
         if (currentLetter is null)
         {
-            throw new Exception("Letter not found");
+            HandleError("Letter not found");
         }
 
         currentLetter.Number = updateLetterFormViewModel.Number ?? "";
@@ -214,7 +214,7 @@ public class LetterService(
         var currentLetter = await _letterRepository.GetByIdAsync(id);
         if (currentLetter is null)
         {
-            throw new Exception("Letter not found");
+            HandleError("Letter not found");
         }
 
         var students = await _studentRepository.GetByLetterIdAsync(id);

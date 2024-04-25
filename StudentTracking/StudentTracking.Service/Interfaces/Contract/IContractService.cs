@@ -1,5 +1,6 @@
 using StudentTracking.Domain.Entities.Contract;
 using StudentTracking.Shared.Models;
+using StudentTracking.Shared.ViewModels;
 
 namespace StudentTracking.Service.Interfaces.Contract;
 
@@ -8,7 +9,7 @@ public interface IContractService
     public Task<IEnumerable<ContractEntity>> GetContractListAsync();
     public Task<IEnumerable<FullContractModel>> GetFullContractListAsync();
 
-    //public Task UpdateLetterAsync(UpdateLetterFormViewModel updateLetterFormViewModel);
-    //public Task CreateLetterAsync(NewLetterFormViewModel newLetterFormViewModel);
+    public Task UpdateContractAsync(UpdateContractFormViewModel updateContractFormViewModel);
+    public Task CreateContractAsync(NewContractFormViewModel newContractFormViewModel);
     public Task DeleteContractAsync(Guid id);
 }

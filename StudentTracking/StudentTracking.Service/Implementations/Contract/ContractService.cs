@@ -7,6 +7,7 @@ using StudentTracking.Domain.Entities.Shared;
 using StudentTracking.Service.Implementations.Letter;
 using StudentTracking.Service.Interfaces.Contract;
 using StudentTracking.Shared.Models;
+using StudentTracking.Shared.ViewModels;
 
 namespace StudentTracking.Service.Implementations.Contract;
 
@@ -62,12 +63,101 @@ public class ContractService(
         return fullContracts;
     }
 
+    public async Task UpdateContractAsync(UpdateContractFormViewModel updateContractFormViewModel)
+    {
+        var currentContract = await _contractRepository.GetByIdAsync(updateContractFormViewModel.Id);
+        if (currentContract is null)
+        {
+            HandleError("Contract not found");
+        }
+        
+        currentContract.EducationProfile = updateContractFormViewModel.EducationProfile ?? "";
+        currentContract.Agency = updateContractFormViewModel.Agency ?? "";
+        currentContract.Status = updateContractFormViewModel.Status ?? "";
+        currentContract.SpecialtyCcode = updateContractFormViewModel.SpecialtyCcode ?? "";
+        currentContract.Number = updateContractFormViewModel.Number ?? "";
+        currentContract.Qualification = updateContractFormViewModel.Qualification ?? "";
+        currentContract.StartDate = updateContractFormViewModel.StartDate;
+        currentContract.EndDate = updateContractFormViewModel.EndDate;
+        currentContract.FacultyId = updateContractFormViewModel.FacultyId;
+
+        await _contractRepository.UpdateAsync(currentContract);
+
+        await UpadateCompanyAsync(updateContractFormViewModel);
+        
+        var annualNumberPeoples = await _annualNumberPeopleRepository.GetByContactId(updateContractFormViewModel.Id);
+        foreach (var item in annualNumberPeoples)
+        {
+            await _annualNumberPeopleRepository.DeleteAsync(item);
+        }
+        if (updateContractFormViewModel.Counts is not null)
+        {
+            foreach (var item in updateContractFormViewModel.Counts)
+            {
+                await _annualNumberPeopleRepository.CreateAsync(new AnnualNumberPeople()
+                    { Year = item.Year, Count = item.Count, ContactId = currentContract.Id });
+            }
+        }
+    }
+
+    private async Task UpadateCompanyAsync(UpdateContractFormViewModel updateContractFormViewModel)
+    {
+        var currentCompany = await _companyRepository.GetByIdAsync(updateContractFormViewModel.CompanyId);
+        if (currentCompany is null)
+        {
+            HandleError("Company not found");
+        }
+
+        currentCompany.Address = updateContractFormViewModel.Address;
+        currentCompany.ShortName = updateContractFormViewModel.ShortName;
+        currentCompany.FullName = updateContractFormViewModel.FullName;
+        currentCompany.Director = updateContractFormViewModel.Director;
+
+        await _companyRepository.UpdateAsync(currentCompany);
+    }
+    
+
+    public async Task CreateContractAsync(NewContractFormViewModel newContractFormViewModel)
+    {
+        var newCompany = new CompanyEntity()
+        {
+            Address = newContractFormViewModel.Address,
+            ShortName = newContractFormViewModel.ShortName,
+            FullName = newContractFormViewModel.FullName,
+            Director = newContractFormViewModel.Director,
+        };
+        await _companyRepository.CreateAsync(newCompany);
+        
+        var newContract = new ContractEntity()
+        {
+            EducationProfile = newContractFormViewModel.EducationProfile  ?? "",
+            Agency = newContractFormViewModel.Agency ?? "",
+            Status = newContractFormViewModel.Status ?? "",
+            SpecialtyCcode = newContractFormViewModel.SpecialtyCcode ?? "",
+            Number = newContractFormViewModel.Number ?? "",
+            Qualification = newContractFormViewModel.Qualification ?? "",
+            StartDate = newContractFormViewModel.StartDate,
+            FacultyId = newContractFormViewModel.FacultyId,
+            CompanyId = newCompany.Id,
+        };
+        await _contractRepository.CreateAsync(newContract);
+        
+        if (newContractFormViewModel.Counts is not null)
+        {
+            foreach (var item in newContractFormViewModel.Counts)
+            {
+                await _annualNumberPeopleRepository.CreateAsync(new AnnualNumberPeople()
+                    { Year = item.Year, Count = item.Count, ContactId = newContract.Id });
+            }
+        }
+    }
+
     public async Task DeleteContractAsync(Guid id)
     {
         var currentContract = await _contractRepository.GetByIdAsync(id);
         if (currentContract is null)
         {
-            throw new Exception("Contract not found");
+            HandleError("Contract not found");
         }
 
         var annualNumberPeoples = await _annualNumberPeopleRepository.GetByContactId(id);
