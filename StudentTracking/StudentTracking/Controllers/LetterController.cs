@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StudentTracking.Domain.Entities.Shared;
@@ -8,6 +9,7 @@ using StudentTracking.Shared.ViewModels;
 
 namespace StudentTracking.Controllers;
 
+[Authorize]
 public class LetterController(
     ILetterService letterService,
     IFacultyService facultyService,
@@ -120,7 +122,7 @@ public class LetterController(
         {
             await _letterService.DeleteLetterAsync(id);
             
-            return await Index();
+            return Redirect($"/Letter/Index/");
         }
         catch (Exception ex)
         {
@@ -135,7 +137,7 @@ public class LetterController(
         {
             await _letterService.CreateLetterAsync(newLetterFormViewModel);
             
-            return await Index();
+            return Redirect($"/Letter/Index/");
         }
         catch (Exception ex)
         {
@@ -186,7 +188,7 @@ public class LetterController(
         {
             await _letterService.UpdateLetterAsync(updateLetterFormViewModel);
             
-            return await Index();
+            return Redirect($"/Letter/Index/");
         }
         catch (Exception ex)
         {

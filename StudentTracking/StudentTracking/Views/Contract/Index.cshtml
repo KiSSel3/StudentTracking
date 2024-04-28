@@ -416,13 +416,13 @@
 
         <td>@fullContract.Contract.EndDate</td>
 
-        <td>@fullContract.Contract.SpecialtyCcode</td>
+        <td>@fullContract.Contract.SpecialtyCode</td>
 
         <td>
-            <ul class="list-group">
+            <ul class="list-group text-nowrap">
                 @foreach (var item in fullContract.AnnualNumberPeoples)
                 {
-                    <li class="list-group-item">@item.Year : @item.Count</li>
+                    <li class="list-group-item">@($"{@item.Year.Year}г: {@item.Count}")</li>
                 }
             </ul>
         </td>

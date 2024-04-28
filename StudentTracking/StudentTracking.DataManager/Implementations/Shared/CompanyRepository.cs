@@ -37,7 +37,7 @@ public class CompanyRepository(ApplicationDbContext dbContext) : IBaseRepository
 
     public async Task<IEnumerable<CompanyEntity>> GetAllAsync()
     {
-        var list = await _dbContext.Companies.ToListAsync();
+        var list = await _dbContext.Companies.Where(c => !c.IsDeleted).ToListAsync();
 
         return list;
     }

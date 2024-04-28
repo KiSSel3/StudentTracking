@@ -25,7 +25,7 @@
         <div class="modal-body">
             <form id="update-form" class="form-horizontal" asp-controller="Contract" asp-action="Create" method="post" onsubmit="return confirm('Вы уверены, что хотите добавить договор?');">
                 <p>Выберите факультет:</p>
-                <select name="FacultyId" class="form-control" asp-items="@Model.FacultySelectList"></select>
+                <select name="FacultyId" class="form-control" asp-items="@Model.FacultySelectList" required></select>
                 <br/>
 
                 <div class="input-group mb-3">
@@ -44,8 +44,8 @@
                 </div>
                 
                 <div class="input-group mb-3">
-                    <span class="input-group-text" id="SpecialtyCcodeId">Код специальности:</span>
-                    <input type="text"  class="form-control" aria-label="SpecialtyCcode" aria-describedby="SpecialtyCcodeId" name="SpecialtyCcode" value="">
+                    <span class="input-group-text" id="SpecialtyCodeId">Код специальности:</span>
+                    <input type="text"  class="form-control" aria-label="SpecialtyCode" aria-describedby="SpecialtyCodeId" name="SpecialtyCode" value="">
                 </div>
                 
                 <div class="input-group mb-3">
@@ -60,12 +60,12 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="StartDateId">Дата начала:</span>
-                    <input type="text"  placeholder="дд.мм.гггг" class="form-control" aria-label="StartDate" aria-describedby="StartDateId" name="StartDate" value="">
+                    <input type="text"  placeholder="дд.мм.гггг" pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}" title="Введите дату в формате дд.мм.гггг" class="form-control" aria-label="StartDate" aria-describedby="StartDateId" name="StartDate" value="">
                 </div>
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="EndDateId">Дата конца:</span>
-                    <input type="text"  placeholder="дд.мм.гггг" class="form-control" aria-label="EndDate" aria-describedby="EndDateId" name="EndDate" value="">
+                    <input type="text"  placeholder="дд.мм.гггг" pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}" title="Введите дату в формате дд.мм.гггг" class="form-control" aria-label="EndDate" aria-describedby="EndDateId" name="EndDate" value="">
                 </div>
 
                 <div class="input-group mb-3">
@@ -94,7 +94,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" onclick="addField('annualNumberPeopleContainer', 'Counts', 'Year', 'Count')" class="btn btn-primary">Добавить</button>
+                        <button type="button" onclick="addField('annualNumberPeopleContainer', 'дд.мм.гггг', 'Count')" class="btn btn-primary">Добавить</button>
                     </div>
                     <div class="col-md-6">
                         <button type="button" onclick="removeLastField('annualNumberPeopleContainer')" class="btn btn-danger">Удалить</button>
@@ -117,8 +117,8 @@
                 <text>$('#validationErrorsModal').modal('show'); </text>
             }
         })
-        
-        function addField(containerId, fieldName, placeholderText1, placeholderText2) {
+
+        function addField(containerId, placeholderText1, placeholderText2) {
             var container = document.getElementById(containerId);
             var div = document.createElement("div");
             div.classList.add("input-group", "mb-3");
@@ -129,11 +129,14 @@
 
             var inputYear = document.createElement("input");
             inputYear.type = "text";
-            inputYear.name = fieldName + ".Year";
+            inputYear.name = "Years";
             inputYear.placeholder = placeholderText1;
             inputYear.classList.add("form-control");
-            inputYear.setAttribute("aria-label", "Year");
+            inputYear.setAttribute("aria-label", "Years");
             inputYear.setAttribute("aria-describedby", containerId + "YearId");
+            inputYear.required = "true";
+            inputYear.pattern = "[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}";
+            inputYear.title="Введите дату в формате дд.мм.гггг";
 
             var spanCount = document.createElement("span");
             spanCount.classList.add("input-group-text");
@@ -141,17 +144,19 @@
 
             var inputCount = document.createElement("input");
             inputCount.type = "number";
-            inputCount.name = fieldName + ".Count";
+            inputCount.name = "Counts";
             inputCount.placeholder = placeholderText2;
             inputCount.classList.add("form-control");
-            inputCount.setAttribute("aria-label", "Count");
+            inputCount.setAttribute("aria-label", "Counts");
             inputCount.setAttribute("aria-describedby", containerId + "CountId");
+            inputCount.required = "true";
+            
 
             div.appendChild(spanYear);
             div.appendChild(inputYear);
             div.appendChild(spanCount);
             div.appendChild(inputCount);
-
+            
             container.appendChild(div);
             container.appendChild(document.createElement("br"));
         }

@@ -74,7 +74,7 @@ public class ContractService(
         currentContract.EducationProfile = updateContractFormViewModel.EducationProfile ?? "";
         currentContract.Agency = updateContractFormViewModel.Agency ?? "";
         currentContract.Status = updateContractFormViewModel.Status ?? "";
-        currentContract.SpecialtyCcode = updateContractFormViewModel.SpecialtyCcode ?? "";
+        currentContract.SpecialtyCode = updateContractFormViewModel.SpecialtyCode ?? "";
         currentContract.Number = updateContractFormViewModel.Number ?? "";
         currentContract.Qualification = updateContractFormViewModel.Qualification ?? "";
         currentContract.StartDate = updateContractFormViewModel.StartDate;
@@ -90,12 +90,18 @@ public class ContractService(
         {
             await _annualNumberPeopleRepository.DeleteAsync(item);
         }
-        if (updateContractFormViewModel.Counts is not null)
+        if (updateContractFormViewModel.Counts is not null && updateContractFormViewModel.Years is not null)
         {
-            foreach (var item in updateContractFormViewModel.Counts)
+            var counts = updateContractFormViewModel.Counts.ToList();
+            var years = updateContractFormViewModel.Years.ToList();
+
+            if (counts.Count == years.Count)
             {
-                await _annualNumberPeopleRepository.CreateAsync(new AnnualNumberPeople()
-                    { Year = item.Year, Count = item.Count, ContactId = currentContract.Id });
+                for (int i = 0; i < counts.Count; i++)
+                {
+                    await _annualNumberPeopleRepository.CreateAsync(new AnnualNumberPeople()
+                        { Year = years[i], Count = counts[i], ContactId = currentContract.Id });
+                }
             }
         }
     }
@@ -125,6 +131,7 @@ public class ContractService(
             ShortName = newContractFormViewModel.ShortName,
             FullName = newContractFormViewModel.FullName,
             Director = newContractFormViewModel.Director,
+            IsDeleted = false
         };
         await _companyRepository.CreateAsync(newCompany);
         
@@ -133,21 +140,28 @@ public class ContractService(
             EducationProfile = newContractFormViewModel.EducationProfile  ?? "",
             Agency = newContractFormViewModel.Agency ?? "",
             Status = newContractFormViewModel.Status ?? "",
-            SpecialtyCcode = newContractFormViewModel.SpecialtyCcode ?? "",
+            SpecialtyCode = newContractFormViewModel.SpecialtyCode ?? "",
             Number = newContractFormViewModel.Number ?? "",
             Qualification = newContractFormViewModel.Qualification ?? "",
             StartDate = newContractFormViewModel.StartDate,
+            EndDate = newContractFormViewModel.EndDate,
             FacultyId = newContractFormViewModel.FacultyId,
             CompanyId = newCompany.Id,
         };
         await _contractRepository.CreateAsync(newContract);
         
-        if (newContractFormViewModel.Counts is not null)
+        if (newContractFormViewModel.Counts is not null && newContractFormViewModel.Years is not null)
         {
-            foreach (var item in newContractFormViewModel.Counts)
+            var counts = newContractFormViewModel.Counts.ToList();
+            var years = newContractFormViewModel.Years.ToList();
+
+            if (counts.Count == years.Count)
             {
-                await _annualNumberPeopleRepository.CreateAsync(new AnnualNumberPeople()
-                    { Year = item.Year, Count = item.Count, ContactId = newContract.Id });
+                for (int i = 0; i < counts.Count; i++)
+                {
+                    await _annualNumberPeopleRepository.CreateAsync(new AnnualNumberPeople()
+                        { Year = years[i], Count = counts[i], ContactId = newContract.Id });
+                }
             }
         }
     }
@@ -167,5 +181,15 @@ public class ContractService(
         }
 
         await _contractRepository.DeleteAsync(currentContract);
+
+        var currentCompany = await _companyRepository.GetByIdAsync(currentContract.CompanyId);
+        if (currentCompany is null)
+        {
+            HandleError("Company not found");
+        }
+
+        currentCompany.IsDeleted = true;
+
+        await _companyRepository.UpdateAsync(currentCompany);
     }
 }

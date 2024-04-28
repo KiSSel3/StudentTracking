@@ -9,7 +9,7 @@ public class NewContractFormViewModel
     public string EducationProfile { get; set; }
     public string Agency { get; set; }
     public string Status { get; set; }
-    public string SpecialtyCcode { get; set; }
+    public string SpecialtyCode { get; set; }
     public string Number { get; set; }
     public string Qualification { get; set; }
 
@@ -25,5 +25,6 @@ public class NewContractFormViewModel
     public Guid FacultyId { get; set; }
     public Guid CompanyId { get; set; }
     
-    public IEnumerable<AnnualNumberPeople> Counts { get; set; }
+    public IEnumerable<DateOnly> Years { get; set; }
+    public IEnumerable<int> Counts { get; set; }
 }

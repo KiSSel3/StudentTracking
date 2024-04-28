@@ -11,11 +11,11 @@
                 <input type="hidden" name="Id" value="@Model.FullLetter.Letter.Id" />
                 
                 <p>Выберите факультет:</p>
-                <select name="FacultyId" class="form-control" asp-items="@Model.FacultySelectList"></select>
+                <select name="FacultyId" class="form-control" asp-items="@Model.FacultySelectList" required></select>
                 <br/>
 
                 <p>Выберите компанию:</p>
-                <select name="CompanyId" class="form-control" asp-items="@Model.CompanySelectList"></select>
+                <select name="CompanyId" class="form-control" asp-items="@Model.CompanySelectList" required></select>
                 <br/>
 
                 <div class="input-group mb-3">

@@ -32,6 +32,8 @@ public class CompanyService(IBaseRepository<CompanyEntity> companyRepository, IL
             HandleError($"Company with id: {id} not found");
         }
 
-        await _companyRepository.DeleteAsync(company);
+        company.IsDeleted = true;
+
+        await _companyRepository.UpdateAsync(company);
     }
 }

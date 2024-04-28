@@ -1,17 +1,187 @@
-@model StudentTracking.Shared.ViewModels.UpdateContractViewModel;
-@{
-    Layout = null;
-}
+@model StudentTracking.Shared.ViewModels.UpdateContractViewModel
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+<div class="modal fade" id="validationErrorsModal" tabindex="-1" aria-labelledby="validationErrorsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="validationErrorsModalLabel">Ошибки валидации</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>@Html.ValidationSummary(false, "", new { @class = "text-danger" })</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
 </div>
-</body>
-</html>
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="updateLabel">Изменить</h5>
+        </div>
+        <div class="modal-body">
+            <form id="update-form" class="form-horizontal" asp-controller="Contract" asp-action="Update" method="post" onsubmit="return confirm('Вы уверены, что хотите изменить договор?');">
+                <input type="hidden" name="Id" value="@Model.FullContract.Contract.Id" />
+                <input type="hidden" name="CompanyId" value="@Model.FullContract.Company.Id" />
+                
+                <p>Выберите факультет:</p>
+                <select name="FacultyId" class="form-control" asp-items="@Model.FacultySelectList" required></select>
+                <br/>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="EducationProfileId">Профиль образования:</span>
+                    <input type="text" name="EducationProfile" class="form-control" aria-label="EducationProfile" aria-describedby="EducationProfileId" value="@Model.FullContract.Contract.EducationProfile">
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="AgencyId">Ведомство:</span>
+                    <input type="text"  class="form-control" aria-label="Agency" aria-describedby="AgencyId" name="Agency" value="@Model.FullContract.Contract.Agency">
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="StatusId">Статус:</span>
+                    <input type="text"  class="form-control" aria-label="Status" aria-describedby="StatusId" name="Status" value="@Model.FullContract.Contract.Status">
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="SpecialtyCodeId">Код специальности:</span>
+                    <input type="text"  class="form-control" aria-label="SpecialtyCode" aria-describedby="SpecialtyCodeId" name="SpecialtyCode" value="@Model.FullContract.Contract.SpecialtyCode">
+                </div>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="NumberId">Номер:</span>
+                    <input type="text"  class="form-control" aria-label="Number" aria-describedby="NumberId" name="Number" value="@Model.FullContract.Contract.Number">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="QualificationId">Квалификация:</span>
+                    <input type="text"  class="form-control" aria-label="Qualification" aria-describedby="QualificationId" name="Qualification" value="@Model.FullContract.Contract.Qualification">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="StartDateId">Дата начала:</span>
+                    <input type="text"  placeholder="дд.мм.гггг" pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}" title="Введите дату в формате дд.мм.гггг" class="form-control" aria-label="StartDate" aria-describedby="StartDateId" name="StartDate" value="@Model.FullContract.Contract.StartDate">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="EndDateId">Дата конца:</span>
+                    <input type="text" placeholder="дд.мм.гггг" pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}" title="Введите дату в формате дд.мм.гггг" class="form-control" aria-label="EndDate" aria-describedby="EndDateId" name="EndDate" value="@Model.FullContract.Contract.EndDate">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="ShortNameId">Имя компании:</span>
+                    <input type="text"  class="form-control" aria-label="ShortName" aria-describedby="ShortNameId" name="ShortName" value="@Model.FullContract.Company.ShortName">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="FullNameId">Полное имя компании:</span>
+                    <input type="text"  class="form-control" aria-label="FullName" aria-describedby="FullNameId" name="FullName" value="@Model.FullContract.Company.FullName">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="AddressId">Адрес компании:</span>
+                    <input type="text"  class="form-control" aria-label="Address" aria-describedby="AddressId" name="Address" value="@Model.FullContract.Company.Address">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="DirectorId">Директор компании:</span>
+                    <input type="text"  class="form-control" aria-label="Director" aria-describedby="DirectorId" name="Director" value="@Model.FullContract.Company.Director">
+                </div>
+                
+                <br/>
+                <h4>Количество:</h4>
+                <div id="annualNumberPeopleContainer" class="row m-3">
+                    @foreach (var item in Model.FullContract.AnnualNumberPeoples)
+                    {
+                        <div id="container" class="input-group mb-3">
+                            <span class="input-group-text">Year:</span>
+                            <input value="@item.Year" id="inputYear" type="text" name="Years" placeholder="дд.мм.гггг" pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}" title="Введите дату в формате дд.мм.гггг" class="form-control" aria-label="Years" aria-describedby="containerYearId" required>
+
+                            <span class="input-group-text">Count:</span>
+                            <input value="@item.Count" id="inputCount" type="number" name="Counts" placeholder="дд.мм.гггг" pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}" title="Введите дату в формате дд.мм.гггг" class="form-control" aria-label="Counts" aria-describedby="containerCountId" required>
+                        </div>
+                    } 
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" onclick="addField('annualNumberPeopleContainer', 'дд.мм.гггг', 'Count')" class="btn btn-primary">Добавить</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" onclick="removeLastField('annualNumberPeopleContainer')" class="btn btn-danger">Удалить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-secondary" asp-controller="Contract" asp-action="Index">Закрыть</a>
+            <button type="submit" class="btn btn-primary" form="update-form">Сохранить</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <text>$('#validationErrorsModal').modal('show'); </text>
+            }
+        })
+
+        function addField(containerId, placeholderText1, placeholderText2) {
+            var container = document.getElementById(containerId);
+            var div = document.createElement("div");
+            div.classList.add("input-group", "mb-3");
+
+            var spanYear = document.createElement("span");
+            spanYear.classList.add("input-group-text");
+            spanYear.textContent = "Year:";
+
+            var inputYear = document.createElement("input");
+            inputYear.type = "text";
+            inputYear.name = "Years";
+            inputYear.placeholder = placeholderText1;
+            inputYear.classList.add("form-control");
+            inputYear.setAttribute("aria-label", "Years");
+            inputYear.setAttribute("aria-describedby", containerId + "YearId");
+            inputYear.required = "true";
+            inputYear.pattern = "[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}";
+            inputYear.title="Введите дату в формате дд.мм.гггг";
+
+            var spanCount = document.createElement("span");
+            spanCount.classList.add("input-group-text");
+            spanCount.textContent = "Count:";
+
+            var inputCount = document.createElement("input");
+            inputCount.type = "number";
+            inputCount.name = "Counts";
+            inputCount.placeholder = placeholderText2;
+            inputCount.classList.add("form-control");
+            inputCount.setAttribute("aria-label", "Counts");
+            inputCount.setAttribute("aria-describedby", containerId + "CountId");
+            inputCount.required = "true";
+            
+
+            div.appendChild(spanYear);
+            div.appendChild(inputYear);
+            div.appendChild(spanCount);
+            div.appendChild(inputCount);
+            
+            container.appendChild(div);
+            container.appendChild(document.createElement("br"));
+        }
+
+        function removeLastField(containerId) {
+            var container = document.getElementById(containerId);
+            var divs = container.getElementsByTagName("div");
+            if (divs.length > 0) {
+                container.removeChild(divs[divs.length - 1]);
+                container.removeChild(container.lastElementChild);
+            }
+        }
+
+    </script>
+}

@@ -30,7 +30,10 @@ public class ApplicationDbContext : DbContext
     public DbSet<UserRoleModel> UsersRoles { get; set; }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-    { }
+    {
+        /*Database.EnsureDeleted();
+        Database.EnsureCreated();*/
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -37,7 +37,7 @@ public class FacultyRepository(ApplicationDbContext dbContext) : IBaseRepository
 
     public async Task<IEnumerable<FacultyEntity>> GetAllAsync()
     {
-        var list = await _dbContext.Faculties.ToListAsync();
+        var list = await _dbContext.Faculties.Where(f=>!f.IsDeleted).ToListAsync();
 
         return list;
     }

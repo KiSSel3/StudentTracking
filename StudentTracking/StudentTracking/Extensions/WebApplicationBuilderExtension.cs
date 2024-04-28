@@ -59,12 +59,9 @@ public static class WebApplicationBuilderExtension
         
         builder.Services.AddScoped<ILetterFilteringService, LetterFilteringService>();
         builder.Services.AddScoped<ILetterSortingService, LetterSortingService>();
-    }
-
-    public static void AddMappers(this WebApplicationBuilder builder)
-    {
-        /*builder.Services.AddScoped<ContractToFullContractMapper>();
-        builder.Services.AddScoped<LetterToFullLetterMapper>();*/
+        
+        builder.Services.AddScoped<IContractFilteringService, ContractFilteringService>();
+        builder.Services.AddScoped<IContractSortingService, ContractSortingService>();
     }
     
     public static void AddAuthentication(this WebApplicationBuilder builder)

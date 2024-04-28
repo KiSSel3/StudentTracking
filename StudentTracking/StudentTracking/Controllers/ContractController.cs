@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using StudentTracking.Models;
@@ -7,17 +8,20 @@ using StudentTracking.Shared.ViewModels;
 
 namespace StudentTracking.Controllers;
 
+[Authorize]
 public class ContractController(
     IContractService contractService,
     ICompanyService companyService,
-    IFacultyService facultyService)
+    IFacultyService facultyService,
+    IContractSortingService sortingService,
+    IContractFilteringService filteringService)
     : Controller
 {
     private readonly IContractService _contractService = contractService;
     private readonly ICompanyService _companyService = companyService;
     private readonly IFacultyService _facultyService = facultyService;
-    /*private readonly ILetterFilteringService _filteringService = filteringService;
-    private readonly ILetterSortingService _sortingService = sortingService;*/
+    private readonly IContractFilteringService _filteringService = filteringService;
+    private readonly IContractSortingService _sortingService = sortingService;
 
     [HttpGet]
     public async Task<IActionResult> Index()
@@ -33,6 +37,45 @@ public class ContractController(
             }
 
             await GetSupportingInformation(contractViewModel);
+            
+            return View("Index", contractViewModel);
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Index(ContractFormViewModel contractFormViewModel)
+    {
+        try
+        {
+            ContractViewModel contractViewModel = new ContractViewModel();
+
+            contractViewModel.FullContracts = await _contractService.GetFullContractListAsync();
+            if (contractViewModel.FullContracts is null)
+            {
+                throw new Exception("Ошибка получения договоров");
+            }
+            
+            if (contractFormViewModel.FacultyId is not null)
+            {
+                contractViewModel.CurrentFaculty = await _facultyService.GetFacultyById(contractFormViewModel.FacultyId.Value);
+                
+                contractViewModel.FullContracts = _filteringService.ByFaculty(contractFormViewModel.FacultyId.Value, contractViewModel.FullContracts);
+            }
+
+            if (!string.IsNullOrEmpty(contractFormViewModel.KeywordSearch))
+            {
+                contractViewModel.FullContracts = _filteringService.KeywordSearch(contractFormViewModel.KeywordSearch, contractViewModel.FullContracts);
+            }
+
+            contractViewModel.FullContracts = _sortingService.SortContracts(contractViewModel.FullContracts,
+                contractFormViewModel.SortingParameter, contractFormViewModel.IsSortingDirectionDesc);
+            
+            await GetSupportingInformation(contractViewModel);
+            await UpdateContractViewModel(contractViewModel, contractFormViewModel);
             
             return View("Index", contractViewModel);
         }
@@ -124,8 +167,6 @@ public class ContractController(
     {
         try
         {
-            //TODO: counts приходит пустой
-            
             ModelState.Clear();
 
             if (string.IsNullOrWhiteSpace(newContractFormViewModel.ShortName))
@@ -155,7 +196,7 @@ public class ContractController(
             
             await _contractService.CreateContractAsync(newContractFormViewModel);
             
-            return await Index();
+            return Redirect($"/Contract/Index/");
         }
         catch (Exception ex)
         {
@@ -169,8 +210,8 @@ public class ContractController(
         try
         {
             await _contractService.DeleteContractAsync(id);
-            
-            return await Index();
+
+            return Redirect($"/Contract/Index/");
         }
         catch (Exception ex)
         {
