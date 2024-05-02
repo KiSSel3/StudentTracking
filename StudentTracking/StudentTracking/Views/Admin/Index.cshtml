@@ -1,0 +1,33 @@
+@model IEnumerable<StudentTracking.Domain.Entities.Main.UserEntity>
+
+@{
+    var currentUserId = User.FindFirst("UserId")?.Value;
+}
+
+<h1 class="display-6 text-center my-4">Пользователи</h1>
+<table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">Имя</th>
+        <th scope="col">Логин</th>
+        <th scope="col">Доступ</th>
+        <th scope="col">Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td class="col">@user.Name</td>
+            <td class="col">@user.Login</td>
+            <td class="col">@(user.IsAccessAllowed ? "Разрешён" : "Запрещён")</td>
+            
+            <td class="col">
+                <a class="btn btn-primary w-100 h-100 mx-2 my-2 @(currentUserId == user.Id.ToString() ? "disabled" : "")"  href="@Url.Action("UpdateUser", "Admin", new { id = user.Id })">@(user.IsAccessAllowed ? "Запретить доступ" : "Разрешить доступ")</a>
+
+                <a class="btn btn-primary w-100 h-100 mx-2 my-2 @(currentUserId == user.Id.ToString() ? "disabled" : "")" href="@Url.Action("DeleteUser", "Admin", new { id = user.Id })">Удалить</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -10,7 +10,7 @@ public interface IUserService
     public Task UpdatePasswordAsync(string userId, UpdatePasswordViewModel viewModel);
     public Task RegisterAsync(RegisterViewModel model);
     public Task<ClaimsIdentity> LoginAsync(LoginViewModel model);
-    public Task DeleteAsyncAsync(string userId);
+    public Task DeleteAsync(Guid id);
     
     public Task<IEnumerable<UserEntity>> GetAllAsync();
     public Task<UserEntity> GetByIdAsync(string userId);
@@ -20,4 +20,6 @@ public interface IUserService
     public Task<bool> CheckUserRoleAsync(string userId, string roleName);
 
     public Task ChangeAccess(string userId);
+
+    public Task UpdateUserAccess(Guid id);
 }

@@ -53,7 +53,7 @@ public class AccountController(IUserService _userService) : Controller
         try
         {
             await _userService.RegisterAsync(model);
-
+            
             //TODO: Добавить сообщение об обращении к админу
             return Redirect("/");
         }

@@ -111,14 +111,12 @@ public class UserService(ILogger<UserService> logger, IUserRepository userReposi
         return (await Authenticate(user));
     }
 
-    public async Task DeleteAsyncAsync(string userId)
+    public async Task DeleteAsync(Guid userId)
     {
-        var guidUserId = StringToGuidMapper.MapTo(userId);
-        
-        var user = await _userRepository.GetByIdAsync(guidUserId);
+        var user = await _userRepository.GetByIdAsync(userId);
         if (user is null)
         {
-            HandleError($"User with id: {guidUserId} not found");
+            HandleError($"User with id: {userId} not found");
         }
 
         await _userRepository.DeleteAsync(user);
@@ -218,7 +216,20 @@ public class UserService(ILogger<UserService> logger, IUserRepository userReposi
         
         await _userRepository.UpdateAsync(user);
     }
-    
+
+    public async Task UpdateUserAccess(Guid id)
+    {
+        var user = await _userRepository.GetByIdAsync(id);
+        if (user is null)
+        {
+            HandleError($"User with id: {id} not found");
+        }
+
+        user.IsAccessAllowed = !user.IsAccessAllowed;
+
+        await _userRepository.UpdateAsync(user);
+    }
+
     private async Task<ClaimsIdentity> Authenticate(UserEntity user)
     {   
         List<Claim> claims = new List<Claim>()
