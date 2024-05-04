@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using OfficeOpenXml;
 using StudentTracking.DataManager.Interfaces;
 using StudentTracking.DataManager.Interfaces.Contract;
 using StudentTracking.DataManager.Interfaces.Letter;
@@ -191,5 +192,61 @@ public class ContractService(
         currentCompany.IsDeleted = true;
 
         await _companyRepository.UpdateAsync(currentCompany);
+    }
+
+    public async Task<Stream> WriteToFile()
+    {
+        var fullContracts = await GetFullContractListAsync();
+
+        using (var package = new ExcelPackage())
+        {
+            ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Contracts");
+            
+            worksheet.Cells[1, 1].Value = "Факультет";
+            worksheet.Cells[1, 2].Value = "Имя";
+            worksheet.Cells[1, 3].Value = "Адрес";
+            worksheet.Cells[1, 4].Value = "Полное имя";
+            worksheet.Cells[1, 5].Value = "Профиль";
+            worksheet.Cells[1, 6].Value = "Директор";
+            worksheet.Cells[1, 7].Value = "Ведомство";
+            worksheet.Cells[1, 8].Value = "Номер";
+            worksheet.Cells[1, 9].Value = "Статус";
+            worksheet.Cells[1, 10].Value = "Дата начала";
+            worksheet.Cells[1, 11].Value = "Дата окончания";
+            worksheet.Cells[1, 12].Value = "Код специальности";
+            worksheet.Cells[1, 13].Value = "Количество";
+
+            int row = 2;
+            foreach (var fullContract in fullContracts)
+            {
+                worksheet.Cells[row, 1].Value = fullContract.Faculty.Abbreviation;
+                worksheet.Cells[row, 2].Value = fullContract.Company.ShortName;
+                worksheet.Cells[row, 3].Value = fullContract.Company.Address;
+                worksheet.Cells[row, 4].Value = fullContract.Company.FullName;
+                worksheet.Cells[row, 5].Value = fullContract.Contract.EducationProfile;
+                worksheet.Cells[row, 6].Value = fullContract.Company.Director;
+                worksheet.Cells[row, 7].Value = fullContract.Contract.Agency;
+                worksheet.Cells[row, 8].Value = fullContract.Contract.Number;
+                worksheet.Cells[row, 9].Value = fullContract.Contract.Status;
+                worksheet.Cells[row, 10].Value = fullContract.Contract.StartDate;
+                worksheet.Cells[row, 11].Value = fullContract.Contract.EndDate;
+                worksheet.Cells[row, 12].Value = fullContract.Contract.SpecialtyCode;
+                
+                string counts = string.Join("\n", fullContract.AnnualNumberPeoples
+                    .Select(a => $"{a.Year.Year}: {a.Count}"));
+                worksheet.Cells[row, 13].Value = counts;
+
+                ++row;
+            }
+            
+            worksheet.Cells.AutoFitColumns();
+            
+            MemoryStream stream = new MemoryStream();
+            package.SaveAs(stream);
+            
+            stream.Position = 0;
+
+            return stream;
+        }
     }
 }

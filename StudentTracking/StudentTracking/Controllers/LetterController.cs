@@ -212,6 +212,22 @@ public class LetterController(
         }
     }
     
+    public async Task<IActionResult> DownloadExcelFile()
+    {
+        try
+        {
+            var stream = await _letterService.WriteToFile();
+                
+            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            
+            return File(stream, contentType, $"Letters-{DateTime.Now.ToString()}.xlsx");
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
     private async Task GetSupportingInformation(LetterViewModel letterViewModel)
     {
         var faculties = await _facultyService.GetFacultyListAsync();

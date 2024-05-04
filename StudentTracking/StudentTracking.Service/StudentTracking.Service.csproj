@@ -12,4 +12,8 @@
       <ProjectReference Include="..\StudentTracking.Shared\StudentTracking.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="EPPlus" Version="7.1.2" />
+    </ItemGroup>
+
 </Project>

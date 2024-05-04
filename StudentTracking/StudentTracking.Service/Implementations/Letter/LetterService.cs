@@ -1,5 +1,6 @@
-using System.Runtime.InteropServices.JavaScript;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using OfficeOpenXml;
 using StudentTracking.DataManager.Interfaces;
 using StudentTracking.DataManager.Interfaces.Contract;
 using StudentTracking.DataManager.Interfaces.Letter;
@@ -280,5 +281,72 @@ public class LetterService(
 
         return
             $"Количество людей в письме: {inLetterCount}\nКоличество людей в договоре на {currentDate.Year} год: {inContractCount}";
+    }
+
+    public async Task<Stream> WriteToFile()
+    {
+        var fullLetters = await GetFullLetterListAsync();
+
+        using (var package = new ExcelPackage())
+        {
+            ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Letters");
+            
+            worksheet.Cells[1, 1].Value = "Факультет";
+            worksheet.Cells[1, 2].Value = "Специальность";
+            worksheet.Cells[1, 3].Value = "Организация";
+            worksheet.Cells[1, 4].Value = "Адрес";
+            worksheet.Cells[1, 5].Value = "Отсталый р-н";
+            worksheet.Cells[1, 6].Value = "Базовая";
+            worksheet.Cells[1, 7].Value = "№ письма";
+            worksheet.Cells[1, 8].Value = "Дата";
+            worksheet.Cells[1, 9].Value = "Кол-во";
+            worksheet.Cells[1, 10].Value = "Должность";
+            worksheet.Cells[1, 11].Value = "Общежитие";
+            worksheet.Cells[1, 12].Value = "Именное";
+            worksheet.Cells[1, 13].Value = "Примичание";
+
+            int row = 2;
+            foreach (var fullLetter in fullLetters)
+            {
+                worksheet.Cells[row, 1].Value = fullLetter.Faculty.Abbreviation;
+                
+                string specialties = string.Join("\n", fullLetter.Specialties.Select(s => s.Value));
+                worksheet.Cells[row, 2].Value = specialties;
+                
+                worksheet.Cells[row, 3].Value = fullLetter.Company.ShortName;
+                worksheet.Cells[row, 4].Value = fullLetter.Company.Address;
+                
+                string remoteAreas = string.Join("\n", fullLetter.RemoteAreas.Select(r => r.Value));
+                worksheet.Cells[row, 5].Value = remoteAreas;
+                
+                worksheet.Cells[row, 6].Value = fullLetter.Letter.Base;
+                worksheet.Cells[row, 7].Value = fullLetter.Letter.Number;
+                worksheet.Cells[row, 8].Value = fullLetter.Letter.Date;
+                
+                string counts = string.Join("\n", fullLetter.Counts.Select(c => c.Value));
+                worksheet.Cells[row, 9].Value = counts;
+                
+                worksheet.Cells[row, 10].Value = fullLetter.Letter.Position;
+                worksheet.Cells[row, 11].Value = fullLetter.Letter.AccommodationProvision;
+                
+                worksheet.Cells[row, 12].Value = fullLetter.Letter.AccommodationProvision;
+                
+                string students = string.Join("\n", fullLetter.Students.Select(s => s.Name));
+                worksheet.Cells[row, 13].Value = students;
+                
+                worksheet.Cells[row, 1].Value = fullLetter.Letter.Note;
+
+                ++row;
+            }
+            
+            worksheet.Cells.AutoFitColumns();
+            
+            MemoryStream stream = new MemoryStream();
+            package.SaveAs(stream);
+            
+            stream.Position = 0;
+
+            return stream;
+        }
     }
 }

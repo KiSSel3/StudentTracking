@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StudentTracking.DataManager.Interfaces.Contract;
 using StudentTracking.Domain.Entities.Contract;
-using StudentTracking.Domain.Entities.Shared;
 
 namespace StudentTracking.DataManager.Implementations.Contract;
 

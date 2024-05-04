@@ -13,4 +13,5 @@ public interface ILetterService
     public Task CreateLetterAsync(NewLetterFormViewModel newLetterFormViewModel);
     public Task DeleteLetterAsync(Guid id);
     public Task<string> CheckLetterAsync(Guid id);
+    public Task<Stream> WriteToFile();
 }
