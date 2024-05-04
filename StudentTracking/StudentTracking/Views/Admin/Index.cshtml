@@ -1,4 +1,4 @@
-@model IEnumerable<StudentTracking.Domain.Entities.Main.UserEntity>
+@model StudentTracking.Shared.ViewModels.AdminViewModel
 
 @{
     var currentUserId = User.FindFirst("UserId")?.Value;
@@ -15,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    @foreach (var user in Model)
+    @foreach (var user in Model.Users)
     {
         <tr>
             <td class="col">@user.Name</td>
@@ -29,5 +29,38 @@
             </td>
         </tr>
     }
+    </tbody>
+</table>
+
+<h1 class="display-6 text-center my-4">Факультеты</h1>
+<table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
+    <thead class="table-dark">
+    <tr>
+        <th scope="col">Полное имя</th>
+        <th scope="col">Сокращение</th>
+        <th scope="col">Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var faculty in Model.Faculties)
+    {
+        <tr>
+            <td class="col">@faculty.FullName</td>
+            <td class="col">@faculty.Abbreviation</td>
+            
+            <td class="col">
+                <a class="btn btn-primary w-100 h-100 mx-2 my-2"  href="@Url.Action("UpdateFaculty", "Admin", new { id = faculty.Id })">Изменить</a>
+
+                <a class="btn btn-primary w-100 h-100 mx-2 my-2"  href="@Url.Action("DeleteFaculty", "Admin", new { id = faculty.Id })">Удалить</a>
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="15">
+            <a type="button" class="btn btn-primary w-100 h-100" asp-controller="Admin" asp-action="CreateFaculty" >
+                <i class="fas fa-plus-circle fa-3x"></i>
+            </a>
+        </td>
+    </tr>
     </tbody>
 </table>

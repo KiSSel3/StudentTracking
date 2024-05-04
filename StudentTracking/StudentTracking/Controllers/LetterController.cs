@@ -24,11 +24,13 @@ public class LetterController(
     private readonly ILetterSortingService _sortingService = sortingService;
     
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string checkDescr = "")
     {
         try
         {
             LetterViewModel letterViewModel = new LetterViewModel();
+
+            letterViewModel.CheckDescr = checkDescr;
             
             letterViewModel.FullLetters = await _letterService.GetFullLetterListAsync();
             if (letterViewModel.FullLetters is null)
@@ -189,6 +191,20 @@ public class LetterController(
             await _letterService.UpdateLetterAsync(updateLetterFormViewModel);
             
             return Redirect($"/Letter/Index/");
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    public async Task<IActionResult> CheckLetter(Guid id)
+    {
+        try
+        {
+            var checkDesc = await _letterService.CheckLetterAsync(id);
+            
+            return await Index(checkDesc);
         }
         catch (Exception ex)
         {

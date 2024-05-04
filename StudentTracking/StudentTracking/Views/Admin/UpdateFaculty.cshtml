@@ -1,0 +1,56 @@
+@model StudentTracking.Domain.Entities.Shared.FacultyEntity
+
+<div class="modal fade" id="validationErrorsModal" tabindex="-1" aria-labelledby="validationErrorsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="validationErrorsModalLabel">Ошибки валидации</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>@Html.ValidationSummary(false, "", new { @class = "text-danger" })</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="updateLabel">Изменить</h5>
+        </div>
+        <div class="modal-body">
+            <form id="update-form" class="form-horizontal" asp-controller="Admin" asp-action="UpdateFaculty" method="post" onsubmit="return confirm('Вы уверены, что хотите изменить факультет?');">
+                <input type="hidden" name="Id" value="@Model.Id" />
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="FullNameId">Имя:</span>
+                    <input type="text" name="FullName" class="form-control" aria-label="FullName" aria-describedby="FullNameId" value="@Model.FullName">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="AbbreviationId">Ведомство:</span>
+                    <input type="text"  class="form-control" aria-label="Abbreviation" aria-describedby="AbbreviationId" name="Abbreviation" value="@Model.Abbreviation">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-secondary" asp-controller="Admin" asp-action="Index">Закрыть</a>
+            <button type="submit" class="btn btn-primary" form="update-form">Сохранить</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    $(document).ready(function () {
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <text>$('#validationErrorsModal').modal('show'); </text>
+        }
+    })
+</script>
+}

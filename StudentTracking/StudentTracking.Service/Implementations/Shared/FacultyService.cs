@@ -48,4 +48,23 @@ public class FacultyService(IBaseRepository<FacultyEntity> facultyRepository, IL
 
         return faculty;
     }
+
+    public async Task UpdateFaculty(FacultyEntity entity)
+    {
+        var faculty = await _facultyRepository.GetByIdAsync(entity.Id);
+        if (faculty is null)
+        {
+            HandleError($"Company with id: {entity.Id} not found");
+        }
+
+        faculty.FullName = entity.FullName;
+        faculty.Abbreviation = entity.Abbreviation;
+        
+        await _facultyRepository.UpdateAsync(faculty);
+    }
+
+    public async Task CreateFaculty(FacultyEntity entity)
+    {
+        await _facultyRepository.CreateAsync(entity);
+    }
 }

@@ -49,10 +49,10 @@ public class ContractRepository(ApplicationDbContext dbContext) : IContractRepos
         return list;
     }
 
-    public async Task<IEnumerable<ContractEntity>> GetByCompanyIdAsync(Guid companyId)
+    public async Task<ContractEntity> GetByCompanyIdAsync(Guid companyId)
     {
-        var list = await _dbContext.Contracts.Where(c => c.CompanyId == companyId).ToListAsync();
+        var contract = await _dbContext.Contracts.FirstOrDefaultAsync(c => c.CompanyId == companyId);
         
-        return list;
+        return contract;
     }
 }

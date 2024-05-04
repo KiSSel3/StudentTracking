@@ -15,4 +15,6 @@ public class LetterViewModel
 
     public bool IsSortingDirectionDesc { get; set; } = true;
     public string KeywordSearch { get; set; } = "";
+
+    public string CheckDescr { get; set; } = "";
 }
