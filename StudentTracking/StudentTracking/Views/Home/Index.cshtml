@@ -1,38 +1,34 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Form</title>
-</head>
-<body>
+﻿@model StudentTracking.Shared.ViewModels.StatisticViewModel
 
-<form id="dynamicForm">
-    <div id="objectFields">
-        <!-- Сюда будут добавляться поля для объектов -->
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="updateLabel">Статистика</h5>
+        </div>
+        <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="FacultyCountId">Факультеты:</span>
+                    <input type="text" name="FacultyCount" class="form-control" aria-label="FacultyCount" aria-describedby="FacultyCountId" value="@Model.FacultyCount" disabled>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="CompanyCountId">Компании:</span>
+                    <input type="text" name="CompanyCount" class="form-control" aria-label="CompanyCount" aria-describedby="CompanyCountId" value="@Model.CompanyCount" disabled>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="LetterCountId">Письма:</span>
+                    <input type="text" name="LetterCount" class="form-control" aria-label="LetterCount" aria-describedby="LetterCountId" value="@Model.LetterCount" disabled>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="ContractCountId">Договоры:</span>
+                    <input type="text" name="ContractCount" class="form-control" aria-label="ContractCount" aria-describedby="ContractCountId" value="@Model.ContractCount" disabled>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-primary" asp-controller="Letter" asp-action="Index">Открыть письма</a>
+            <a type="button" class="btn btn-primary" asp-controller="Contract" asp-action="Index">Открыть договоры</a>
+        </div>
     </div>
-    <button type="button" onclick="addObjectField()">Добавить объект</button>
-    <button type="submit">Отправить</button>
-</form>
-
-<script>
-    let objectId = 0;
-
-    function addObjectField() {
-        const objectFields = document.getElementById('objectFields');
-        const newField = document.createElement('div');
-        newField.innerHTML = `
-            <input type="text" name="object${objectId}" placeholder="Введите объект ${objectId + 1}">
-            <button type="button" onclick="removeObjectField(this)">Удалить</button>
-        `;
-        objectFields.appendChild(newField);
-        objectId++;
-    }
-
-    function removeObjectField(button) {
-        button.parentElement.remove();
-    }
-</script>
-
-</body>
-</html>
+</div>
