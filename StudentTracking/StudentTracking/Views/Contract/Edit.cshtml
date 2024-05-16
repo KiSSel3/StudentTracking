@@ -92,15 +92,15 @@
                 </div>
                 
                 <br/>
-                <h4>Количество:</h4>
+                <h4>Количество людей в год:</h4>
                 <div id="annualNumberPeopleContainer" class="row m-3">
                     @foreach (var item in Model.FullContract.AnnualNumberPeoples)
                     {
                         <div id="container" class="input-group mb-3">
-                            <span class="input-group-text">Year:</span>
+                            <span class="input-group-text">Год:</span>
                             <input value="@item.Year" id="inputYear" type="text" name="Years" placeholder="дд.мм.гггг" pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}" title="Введите дату в формате дд.мм.гггг" class="form-control" aria-label="Years" aria-describedby="containerYearId" required>
 
-                            <span class="input-group-text">Count:</span>
+                            <span class="input-group-text">Количество:</span>
                             <input value="@item.Count" id="inputCount" type="number" name="Counts" placeholder="дд.мм.гггг" pattern="[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4}" title="Введите дату в формате дд.мм.гггг" class="form-control" aria-label="Counts" aria-describedby="containerCountId" required>
                         </div>
                     } 
@@ -138,7 +138,7 @@
 
             var spanYear = document.createElement("span");
             spanYear.classList.add("input-group-text");
-            spanYear.textContent = "Year:";
+            spanYear.textContent = "Год:";
 
             var inputYear = document.createElement("input");
             inputYear.type = "text";
@@ -153,7 +153,7 @@
 
             var spanCount = document.createElement("span");
             spanCount.classList.add("input-group-text");
-            spanCount.textContent = "Count:";
+            spanCount.textContent = "Количество:";
 
             var inputCount = document.createElement("input");
             inputCount.type = "number";
