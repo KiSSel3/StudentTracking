@@ -31,8 +31,7 @@ public class ApplicationDbContext : DbContext
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-        /*Database.EnsureDeleted();
-        Database.EnsureCreated();*/
+        Database.EnsureCreated();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -49,6 +48,22 @@ public class ApplicationDbContext : DbContext
         {
             Id = new Guid("9E7BF79C-BF94-4B40-A4F6-A3660E9DFD4A"),
             Name = "Admin"
+        });
+
+        modelBuilder.Entity<UserEntity>().HasData(new UserEntity()
+        {
+            Id = new Guid("658D23F5-3CF9-4F81-9EBF-B495330B5C4D"),
+            IsAccessAllowed = true,
+            Login = "Admin",
+            Name = "Admin",
+            PasswordHash = "Admin"
+        });
+
+        modelBuilder.Entity<UserRoleModel>().HasData(new UserRoleModel()
+        {
+            Id = Guid.NewGuid(),
+            RoleId = new Guid("9E7BF79C-BF94-4B40-A4F6-A3660E9DFD4A"),
+            UserId = new Guid("658D23F5-3CF9-4F81-9EBF-B495330B5C4D")
         });
     }
 }
