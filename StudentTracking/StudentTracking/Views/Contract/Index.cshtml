@@ -394,7 +394,7 @@
 <tbody>
 @foreach (var fullContract in Model.FullContracts)
 {
-    <tr onclick="toggleHighlight(this)">
+    <tr class="@(fullContract.Contract.IsHighlight ? "table-primary" : "")" onclick="toggleHighlight(this, '@fullContract.Contract.Id')">
         <th scope="row">@fullContract.Number</th>
 
         <td>@fullContract.Faculty.Abbreviation</td>
@@ -463,8 +463,22 @@
 
 @section Scripts {
     <script>
-    function toggleHighlight(row) {
+    function toggleHighlight(row, contractId) {
         row.classList.toggle('table-primary');
+      
+        $.ajax({
+            type: 'POST',
+            url: '/Contract/ModifyIsHighlight',
+            data: { id: contractId, value: row.classList.contains('table-primary') },
+            success: function (data) {
+                console.log('Запрос выполнен успешно');
+            },
+            error: function (xhr, status, error) {
+                console.error('Произошла ошибка при выполнении запроса');
+            }
+        });
     }
 </script>
+}
+
 }

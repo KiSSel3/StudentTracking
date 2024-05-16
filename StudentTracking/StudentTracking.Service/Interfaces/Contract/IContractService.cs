@@ -12,5 +12,6 @@ public interface IContractService
     public Task UpdateContractAsync(UpdateContractFormViewModel updateContractFormViewModel);
     public Task CreateContractAsync(NewContractFormViewModel newContractFormViewModel);
     public Task DeleteContractAsync(Guid id);
+    public Task ModifyIsHighlight(Guid id, bool value);
     public Task<Stream> WriteToFile();
 }

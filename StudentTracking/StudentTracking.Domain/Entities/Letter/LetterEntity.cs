@@ -12,4 +12,6 @@ public class LetterEntity : BaseEntity
     
     public Guid FacultyId { get; set; }
     public Guid CompanyId { get; set; }
+    
+    public bool IsHighlight { get; set; }
 }

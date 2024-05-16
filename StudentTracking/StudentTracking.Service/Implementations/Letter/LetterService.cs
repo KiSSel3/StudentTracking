@@ -283,6 +283,19 @@ public class LetterService(
             $"Количество людей в письме: {inLetterCount}\nКоличество людей в договоре на {currentDate.Year} год: {inContractCount}";
     }
 
+    public async Task ModifyIsHighlight(Guid id, bool value)
+    {
+        var currentLetter = await _letterRepository.GetByIdAsync(id);
+        if (currentLetter is null)
+        {
+            HandleError("Letter not found");
+        }
+
+        currentLetter.IsHighlight = value;
+
+        await _letterRepository.UpdateAsync(currentLetter);
+    }
+
     public async Task<Stream> WriteToFile()
     {
         var fullLetters = await GetFullLetterListAsync();

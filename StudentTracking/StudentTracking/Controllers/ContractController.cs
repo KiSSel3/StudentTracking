@@ -235,6 +235,22 @@ public class ContractController(
         }
     }
     
+    [HttpPost]
+    public async Task<IActionResult> ModifyIsHighlight(Guid id, bool value)
+    {
+        try
+        {
+            await _contractService.ModifyIsHighlight(id, value);
+            
+            return Redirect($"/Contract/Index/");
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+
+    
     private async Task UpdateContractViewModel(ContractViewModel contractViewModel, ContractFormViewModel contractFormViewModel)
     {
         contractViewModel.SortingParameter = contractFormViewModel.SortingParameter;

@@ -228,6 +228,21 @@ public class LetterController(
         }
     }
     
+    [HttpPost]
+    public async Task<IActionResult> ModifyIsHighlight(Guid id, bool value)
+    {
+        try
+        {
+            await _letterService.ModifyIsHighlight(id, value);
+            
+            return Redirect($"/Letter/Index/");
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
     private async Task GetSupportingInformation(LetterViewModel letterViewModel)
     {
         var faculties = await _facultyService.GetFacultyListAsync();

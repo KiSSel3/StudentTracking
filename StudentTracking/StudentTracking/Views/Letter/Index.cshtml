@@ -78,7 +78,7 @@
     </div>
 </caption>
 
-    <thead class="table-dark">
+<thead class="table-dark">
 <tr>
     <th scope="col">
         <form method="post" asp-controller="Letter" asp-action="Index">
@@ -412,7 +412,7 @@
 <tbody>
 @foreach (var fullLetter in Model.FullLetters)
 {
-    <tr onclick="toggleHighlight(this)">
+    <tr class="@(fullLetter.Letter.IsHighlight ? "table-primary" : "")" onclick="toggleHighlight(this, '@fullLetter.Letter.Id')">
         <th scope="row">@fullLetter.Number</th>
 
         <td>@fullLetter.Faculty.Abbreviation</td>
@@ -510,9 +510,21 @@
 
 @section Scripts {
     <script>
-    function toggleHighlight(row) {
-        row.classList.toggle('table-primary');
-    }
+        function toggleHighlight(row, letterId) {
+            row.classList.toggle('table-primary');
+
+            $.ajax({
+                type: 'POST',
+                url: '/Letter/ModifyIsHighlight',
+                data: { id: letterId, value: row.classList.contains('table-primary') },
+                success: function (data) {
+                    console.log('Запрос выполнен успешно');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Произошла ошибка при выполнении запроса');
+                }
+            });
+        }
 
     $(document).ready(function () {
         @if (@Model.CheckDescr != "")

@@ -14,4 +14,6 @@ public class ContractEntity : BaseEntity
     
     public Guid CompanyId { get; set; }
     public Guid FacultyId { get; set; }
+    
+    public bool IsHighlight { get; set; }
 }

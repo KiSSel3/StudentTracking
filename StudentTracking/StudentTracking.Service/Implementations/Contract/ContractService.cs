@@ -148,6 +148,7 @@ public class ContractService(
             EndDate = newContractFormViewModel.EndDate,
             FacultyId = newContractFormViewModel.FacultyId,
             CompanyId = newCompany.Id,
+            IsHighlight = false
         };
         await _contractRepository.CreateAsync(newContract);
         
@@ -192,6 +193,19 @@ public class ContractService(
         currentCompany.IsDeleted = true;
 
         await _companyRepository.UpdateAsync(currentCompany);
+    }
+
+    public async Task ModifyIsHighlight(Guid id, bool value)
+    {
+        var currentContract = await _contractRepository.GetByIdAsync(id);
+        if (currentContract is null)
+        {
+            HandleError("Contract not found");
+        }
+
+        currentContract.IsHighlight = value;
+
+        await _contractRepository.UpdateAsync(currentContract);
     }
 
     public async Task<Stream> WriteToFile()
