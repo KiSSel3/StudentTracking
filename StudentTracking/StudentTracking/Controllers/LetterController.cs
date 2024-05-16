@@ -100,14 +100,16 @@ public class LetterController(
             {
                 throw new Exception("Ошибка получения компаний");
             }
-            newLetterViewModel.CompanySelectList = new SelectList(companies.ToList(), "Id", "ShortName");
+
+            newLetterViewModel.Companies = companies;
             
             var faculties = await _facultyService.GetFacultyListAsync();
             if (faculties is null)
             {
                 throw new Exception("Ошибка получения факультетов");
             }
-            newLetterViewModel.FacultySelectList = new SelectList(faculties.ToList(), "Id", "FullName");
+
+            newLetterViewModel.Faculties = faculties;
             
             return View("Create", newLetterViewModel);
         }
@@ -166,14 +168,16 @@ public class LetterController(
             {
                 throw new Exception("Ошибка получения компаний");
             }
-            updateLetterViewModel.CompanySelectList = new SelectList(companies.ToList(), "Id", "ShortName");
+
+            updateLetterViewModel.Companies = companies;
             
             var faculties = await _facultyService.GetFacultyListAsync();
             if (faculties is null)
             {
                 throw new Exception("Ошибка получения факультетов");
             }
-            updateLetterViewModel.FacultySelectList = new SelectList(faculties.ToList(), "Id", "FullName");
+
+            updateLetterViewModel.Faculties = faculties;
             
             return View("Edit", updateLetterViewModel);
         }

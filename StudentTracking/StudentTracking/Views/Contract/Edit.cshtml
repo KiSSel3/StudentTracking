@@ -26,11 +26,23 @@
             <form id="update-form" class="form-horizontal" asp-controller="Contract" asp-action="Update" method="post" onsubmit="return confirm('Вы уверены, что хотите изменить договор?');">
                 <input type="hidden" name="Id" value="@Model.FullContract.Contract.Id" />
                 <input type="hidden" name="CompanyId" value="@Model.FullContract.Company.Id" />
-                
-                <p>Выберите факультет:</p>
-                <select name="FacultyId" class="form-control" asp-items="@Model.FacultySelectList" required></select>
-                <br/>
 
+                <p>Выберите факультет:</p>
+                <div class="row">
+                    <div class="col-4">
+                        <select name="FacultyId" id="facultySelect" class="form-control" required>
+                            @foreach (var faculty in Model.Faculties)
+                            {
+                            <option value="@faculty.Id">@faculty.FullName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="facultySearch" class="form-control" placeholder="Фильтрация по названию факультета">
+                    </div>
+                </div>
+                <br/>
+                
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="EducationProfileId">Профиль образования:</span>
                     <input type="text" name="EducationProfile" class="form-control" aria-label="EducationProfile" aria-describedby="EducationProfileId" value="@Model.FullContract.Contract.EducationProfile">
@@ -127,8 +139,17 @@
         $(document).ready(function () {
             @if (!ViewData.ModelState.IsValid)
             {
-                <text>$('#validationErrorsModal').modal('show'); </text>
+            <text>$('#validationErrorsModal').modal('show'); </text>
             }
+
+            $('#facultySearch').on('input', function () {
+                var searchQuery = $(this).val().toLowerCase();
+                $('#facultySelect option').each(function () {
+                    var text = $(this).text().toLowerCase();
+                    var match = text.includes(searchQuery);
+                    $(this).toggle(match);
+                });
+            });
         })
 
         function addField(containerId, placeholderText1, placeholderText2) {

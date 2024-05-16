@@ -104,7 +104,8 @@ public class ContractController(
             {
                 throw new Exception("Ошибка получения факультетов");
             }
-            updateContractViewModel.FacultySelectList = new SelectList(faculties.ToList(), "Id", "FullName");
+
+            updateContractViewModel.Faculties = faculties;
 
             return View("Edit", updateContractViewModel);
         }
@@ -152,7 +153,8 @@ public class ContractController(
             {
                 throw new Exception("Ошибка получения факультетов");
             }
-            newContractViewModel.FacultySelectList = new SelectList(faculties.ToList(), "Id", "FullName");
+
+            newContractViewModel.Faculties = faculties;
             
             return View("Create", newContractViewModel);
         }
