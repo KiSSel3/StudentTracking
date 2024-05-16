@@ -27,8 +27,9 @@
                 </div>
         </div>
         <div class="modal-footer">
-            <a type="button" class="btn btn-primary" asp-controller="Letter" asp-action="Index">Открыть письма</a>
-            <a type="button" class="btn btn-primary" asp-controller="Contract" asp-action="Index">Открыть договоры</a>
+            <a type="button" class="btn btn-primary" asp-controller="Letter" asp-action="Index">Письма</a>
+            <a type="button" class="btn btn-primary" asp-controller="Contract" asp-action="Index">Договоры</a>
+            <a type="button" class="btn btn-primary"  href="@Url.Action("DownloadExcelFile", "Home")"><i class="fas fa-download"></i> Скачать Excel</a>
         </div>
     </div>
 </div>
