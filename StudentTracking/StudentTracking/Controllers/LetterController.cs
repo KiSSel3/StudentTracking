@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using StudentTracking.Domain.Entities.Shared;
 using StudentTracking.Models;
 using StudentTracking.Service.Interfaces.Letter;
@@ -15,13 +16,17 @@ public class LetterController(
     IFacultyService facultyService,
     ICompanyService companyService,
     ILetterFilteringService filteringService,
-    ILetterSortingService sortingService) : Controller
+    ILetterSortingService sortingService,
+    IPossibleSpecialtyService possibleSpecialtyService,
+    IPossibleRemoteAreaService possibleRemoteAreaService) : Controller
 {
     private readonly ILetterService _letterService = letterService;
     private readonly ICompanyService _companyService = companyService;
     private readonly IFacultyService _facultyService = facultyService;
     private readonly ILetterFilteringService _filteringService = filteringService;
     private readonly ILetterSortingService _sortingService = sortingService;
+    private readonly IPossibleRemoteAreaService _possibleRemoteAreaService = possibleRemoteAreaService;
+    private readonly IPossibleSpecialtyService _possibleSpecialtyService = possibleSpecialtyService;
     
     [HttpGet]
     public async Task<IActionResult> Index(string checkDescr = "")
@@ -100,7 +105,6 @@ public class LetterController(
             {
                 throw new Exception("Ошибка получения компаний");
             }
-
             newLetterViewModel.Companies = companies;
             
             var faculties = await _facultyService.GetFacultyListAsync();
@@ -108,8 +112,21 @@ public class LetterController(
             {
                 throw new Exception("Ошибка получения факультетов");
             }
-
             newLetterViewModel.Faculties = faculties;
+            
+            var possibleRemoteAreas = await _possibleRemoteAreaService.GetPossibleRemoteAreaListAsync();
+            if (possibleRemoteAreas is null)
+            {
+                throw new Exception("Ошибка получения отсталых районов");
+            }
+            newLetterViewModel.PossibleRemoteAreas = JsonConvert.SerializeObject(possibleRemoteAreas);
+            
+            var possibleSpecialties = await _possibleSpecialtyService.GetPossibleSpecialtyListAsync();
+            if (faculties is null)
+            {
+                throw new Exception("Ошибка получения специальностей");
+            }
+            newLetterViewModel.PossibleSpecialties = JsonConvert.SerializeObject(possibleSpecialties);
             
             return View("Create", newLetterViewModel);
         }
@@ -178,6 +195,22 @@ public class LetterController(
             }
 
             updateLetterViewModel.Faculties = faculties;
+            
+            var possibleRemoteAreas = await _possibleRemoteAreaService.GetPossibleRemoteAreaListAsync();
+            if (possibleRemoteAreas is null)
+            {
+                throw new Exception("Ошибка получения отсталых районов");
+            }
+            updateLetterViewModel.PossibleRemoteAreasList = possibleRemoteAreas;
+            updateLetterViewModel.PossibleRemoteAreas = JsonConvert.SerializeObject(possibleRemoteAreas);
+            
+            var possibleSpecialties = await _possibleSpecialtyService.GetPossibleSpecialtyListAsync();
+            if (faculties is null)
+            {
+                throw new Exception("Ошибка получения специальностей");
+            }
+            updateLetterViewModel.PossibleSpecialtiesList = possibleSpecialties;
+            updateLetterViewModel.PossibleSpecialties = JsonConvert.SerializeObject(possibleSpecialties);
             
             return View("Edit", updateLetterViewModel);
         }

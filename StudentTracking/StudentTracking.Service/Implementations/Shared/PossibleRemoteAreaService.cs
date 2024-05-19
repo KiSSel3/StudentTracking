@@ -37,4 +37,9 @@ public class PossibleRemoteAreaService(
 
         await _possibleReomteAreaRepository.DeleteAsync(item);
     }
+
+    public async Task CreatePossibleRemoteAreaAsync(PossibleRemoteAreaEntity entity)
+    {
+        await _possibleReomteAreaRepository.CreateAsync(entity);
+    }
 }

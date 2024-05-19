@@ -3,64 +3,136 @@
 @{
     var currentUserId = User.FindFirst("UserId")?.Value;
 }
-
-<h1 class="display-6 text-center my-4">Пользователи</h1>
-<table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
-    <thead class="table-dark">
-    <tr>
-        <th scope="col">Имя</th>
-        <th scope="col">Логин</th>
-        <th scope="col">Доступ</th>
-        <th scope="col">Действие</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var user in Model.Users)
-    {
+    <h1 class="display-6 text-center my-4">Пользователи</h1>
+    <table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
+        <thead class="table-dark">
         <tr>
-            <td class="col">@user.Name</td>
-            <td class="col">@user.Login</td>
-            <td class="col">@(user.IsAccessAllowed ? "Разрешён" : "Запрещён")</td>
+            <th scope="col">Имя</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Доступ</th>
+            <th scope="col">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td class="col">@user.Name</td>
+                <td class="col">@user.Login</td>
+                <td class="col">@(user.IsAccessAllowed ? "Разрешён" : "Запрещён")</td>
             
-            <td class="col">
-                <a class="btn btn-primary w-100 h-100 mx-2 my-2 @(currentUserId == user.Id.ToString() ? "disabled" : "")"  href="@Url.Action("UpdateUser", "Admin", new { id = user.Id })">@(user.IsAccessAllowed ? "Запретить доступ" : "Разрешить доступ")</a>
+                <td class="col">
+                    <a class="btn btn-primary w-100 h-100 mx-2 my-2 @(currentUserId == user.Id.ToString() ? "disabled" : "")"  href="@Url.Action("UpdateUser", "Admin", new { id = user.Id })">@(user.IsAccessAllowed ? "Запретить доступ" : "Разрешить доступ")</a>
 
-                <a class="btn btn-primary w-100 h-100 mx-2 my-2 @(currentUserId == user.Id.ToString() ? "disabled" : "")" href="@Url.Action("DeleteUser", "Admin", new { id = user.Id })">Удалить</a>
+                    <a class="btn btn-primary w-100 h-100 mx-2 my-2 @(currentUserId == user.Id.ToString() ? "disabled" : "")" href="@Url.Action("DeleteUser", "Admin", new { id = user.Id })">Удалить</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <h1 class="display-6 text-center my-4">Факультеты</h1>
+    <table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
+        <thead class="table-dark">
+        <tr>
+            <th scope="col">Полное имя</th>
+            <th scope="col">Сокращение</th>
+            <th scope="col">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var faculty in Model.Faculties)
+        {
+            <tr>
+                <td class="col">@faculty.FullName</td>
+                <td class="col">@faculty.Abbreviation</td>
+            
+                <td class="col">
+                    <a class="btn btn-primary w-100 h-100 my-2"  href="@Url.Action("UpdateFaculty", "Admin", new { id = faculty.Id })">Изменить</a>
+
+                    <a class="btn btn-primary w-100 h-100 my-2"  href="@Url.Action("DeleteFaculty", "Admin", new { id = faculty.Id })">Удалить</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="15">
+                <a type="button" class="btn btn-primary w-100 h-100" asp-controller="Admin" asp-action="CreateFaculty" >
+                    <i class="fas fa-plus-circle fa-3x"></i>
+                </a>
             </td>
         </tr>
-    }
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
-<h1 class="display-6 text-center my-4">Факультеты</h1>
-<table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
-    <thead class="table-dark">
-    <tr>
-        <th scope="col">Полное имя</th>
-        <th scope="col">Сокращение</th>
-        <th scope="col">Действие</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var faculty in Model.Faculties)
-    {
-        <tr>
-            <td class="col">@faculty.FullName</td>
-            <td class="col">@faculty.Abbreviation</td>
-            
-            <td class="col">
-                <a class="btn btn-primary w-100 h-100 mx-2 my-2"  href="@Url.Action("UpdateFaculty", "Admin", new { id = faculty.Id })">Изменить</a>
+    <div class="row my-4">
+        <div class="col-md-6">
+            <h1 class="display-6 text-center my-4">Отсталые районы</h1>
+            <hr class="my-4">
+        
+            <div class="row row-cols-1 row-cols-md-1 g-4 px-3">
+                <table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Значение</th>
+                        <th scope="col">Действие</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.PossibleRemoteAreas)
+                    {
+                        <tr>
+                            <td class="col">@item.Value</td>
 
-                <a class="btn btn-primary w-100 h-100 mx-2 my-2"  href="@Url.Action("DeleteFaculty", "Admin", new { id = faculty.Id })">Удалить</a>
-            </td>
-        </tr>
-    }
-    <tr>
-        <td colspan="15">
-            <a type="button" class="btn btn-primary w-100 h-100" asp-controller="Admin" asp-action="CreateFaculty" >
-                <i class="fas fa-plus-circle fa-3x"></i>
-            </a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+                            <td class="col">
+                                <a class="btn btn-primary w-100 h-100 my-2"  href="@Url.Action("DeletePossibleRemoteArea", "Admin", new { id = item.Id })">Удалить</a>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="15">
+                            <a type="button" class="btn btn-primary w-100 h-100" asp-controller="Admin" asp-action="CreatePossibleRemoteArea" >
+                                <i class="fas fa-plus-circle fa-3x"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="col-md-6">
+            <h1 class="display-6 text-center my-4">Специальности</h1>
+            <hr class="my-4">
+
+            <div class="row row-cols-1 row-cols-md-1 g-4 px-3">
+                <table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Значение</th>
+                        <th scope="col">Действие</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.PossibleSpecialties)
+                    {
+                        <tr>
+                            <td class="col">@item.Value</td>
+
+                            <td class="col">
+                                <a class="btn btn-primary w-100 h-100 my-2"  href="@Url.Action("DeletePossibleSpecialty", "Admin", new { id = item.Id })">Удалить</a>
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <td colspan="15">
+                            <a type="button" class="btn btn-primary w-100 h-100" asp-controller="Admin" asp-action="CreatePossibleSpecialty" >
+                                <i class="fas fa-plus-circle fa-3x"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

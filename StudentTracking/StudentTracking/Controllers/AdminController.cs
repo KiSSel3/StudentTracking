@@ -8,10 +8,12 @@ using StudentTracking.Shared.ViewModels;
 
 namespace StudentTracking.Controllers;
 
-public class AdminController(IUserService userService, IFacultyService facultyService) : Controller
+public class AdminController(IUserService userService, IFacultyService facultyService, IPossibleSpecialtyService possibleSpecialtyService, IPossibleRemoteAreaService possibleRemoteAreaService) : Controller
 {
     private readonly IUserService _userService = userService;
     private readonly IFacultyService _facultyService = facultyService;
+    private readonly IPossibleRemoteAreaService _possibleRemoteAreaService = possibleRemoteAreaService;
+    private readonly IPossibleSpecialtyService _possibleSpecialtyService = possibleSpecialtyService;
 
     // GET
     public async Task<IActionResult> Index()
@@ -19,9 +21,14 @@ public class AdminController(IUserService userService, IFacultyService facultySe
         try
         {
             AdminViewModel viewModel = new AdminViewModel();
+            
             viewModel.Users = await _userService.GetAllAsync();
 
             viewModel.Faculties = await _facultyService.GetFacultyListAsync();
+
+            viewModel.PossibleRemoteAreas = await _possibleRemoteAreaService.GetPossibleRemoteAreaListAsync();
+            
+            viewModel.PossibleSpecialties = await _possibleSpecialtyService.GetPossibleSpecialtyListAsync();
             
             return View("Index", viewModel);
         }
@@ -122,6 +129,78 @@ public class AdminController(IUserService userService, IFacultyService facultySe
         try
         {
             await _facultyService.DeleteFacultyAsync(id);
+            
+            return Redirect($"/Admin/Index/");
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    [HttpGet]
+    public IActionResult CreatePossibleRemoteArea()
+    {
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> CreatePossibleRemoteArea(PossibleRemoteAreaEntity item)
+    {
+        try
+        {
+            await _possibleRemoteAreaService.CreatePossibleRemoteAreaAsync(item);
+            
+            return Redirect($"/Admin/Index/");
+
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    public async Task<IActionResult> DeletePossibleRemoteArea(Guid id)
+    {
+        try
+        {
+            await _possibleRemoteAreaService.DeletePossibleRemoteAreaAsync(id);
+            
+            return Redirect($"/Admin/Index/");
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    [HttpGet]
+    public IActionResult CreatePossibleSpecialty()
+    {
+        return View();
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> CreatePossibleSpecialty(PossibleSpecialtyEntity item)
+    {
+        try
+        {
+            await _possibleSpecialtyService.CreatePossibleSpecialtyAsync(item);
+            
+            return Redirect($"/Admin/Index/");
+
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    public async Task<IActionResult> DeletePossibleSpecialty(Guid id)
+    {
+        try
+        {
+            await _possibleSpecialtyService.DeletePossibleSpecialtyAsync(id);
             
             return Redirect($"/Admin/Index/");
         }

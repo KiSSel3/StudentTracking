@@ -7,4 +7,6 @@ public class AdminViewModel
 {
     public IEnumerable<UserEntity> Users { get; set; }
     public IEnumerable<FacultyEntity> Faculties { get; set; }
+    public IEnumerable<PossibleRemoteAreaEntity> PossibleRemoteAreas { get; set; }
+    public IEnumerable<PossibleSpecialtyEntity> PossibleSpecialties { get; set; }
 }

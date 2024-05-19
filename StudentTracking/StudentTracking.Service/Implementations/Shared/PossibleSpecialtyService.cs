@@ -5,10 +5,13 @@ using StudentTracking.Service.Interfaces.Shared;
 
 namespace StudentTracking.Service.Implementations.Shared;
 
-public class PossibleSpecialtyService : IPossibleSpecialtyService
+public class PossibleSpecialtyService(
+    IBaseRepository<PossibleSpecialtyEntity> possibleSpecialtyRepository,
+    ILogger<CompanyService> logger)
+    : IPossibleSpecialtyService
 {
-    private readonly IBaseRepository<PossibleSpecialtyEntity> _possibleSpecialtyRepository;
-    private readonly ILogger<CompanyService> _logger;
+    private readonly IBaseRepository<PossibleSpecialtyEntity> _possibleSpecialtyRepository = possibleSpecialtyRepository;
+    private readonly ILogger<CompanyService> _logger = logger;
 
     private void HandleError(string message)
     {
@@ -33,5 +36,10 @@ public class PossibleSpecialtyService : IPossibleSpecialtyService
         }
 
         await _possibleSpecialtyRepository.DeleteAsync(item);
+    }
+
+    public async Task CreatePossibleSpecialtyAsync(PossibleSpecialtyEntity entity)
+    {
+        await _possibleSpecialtyRepository.CreateAsync(entity);
     }
 }

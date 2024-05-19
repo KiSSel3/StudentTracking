@@ -65,7 +65,7 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="DateId">Дата:</span>
-                    <input type="text"  placeholder="дд.мм.гггг" class="form-control" aria-label="Date" aria-describedby="DateId" name="Date" value="">
+                    <input type="text"  placeholder="дд.мм.гггг" class="form-control" aria-label="Date" aria-describedby="DateId" name="Date" value="" required>
                 </div>
 
                 <br/>
@@ -87,10 +87,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" onclick="addField('remoteAreasContainer', 'RemoteAreas', 'Название отсталого р-на')" class="btn btn-primary">Добавить</button>
+                        <button type="button" onclick="addSelectFieldRemoteAreas('remoteAreasContainer', 'RemoteAreas')" class="btn btn-primary">Добавить</button>
                     </div>
                     <div class="col-md-6">
-                        <button type="button" onclick="removeLastField('remoteAreasContainer')" class="btn btn-danger">Удалить</button>
+                        <button type="button" onclick="removeLastSelectField('remoteAreasContainer')" class="btn btn-danger">Удалить</button>
                     </div>
                 </div>
 
@@ -100,10 +100,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" onclick="addField('specialtiesContainer', 'Specialities', 'Название специальности')" class="btn btn-primary">Добавить</button>
+                        <button type="button" onclick="addSelectFieldSpecialties('specialtiesContainer', 'Specialities')" class="btn btn-primary">Добавить</button>
                     </div>
                     <div class="col-md-6">
-                        <button type="button" onclick="removeLastField('specialtiesContainer')" class="btn btn-danger">Удалить</button>
+                        <button type="button" onclick="removeLastSelectField('specialtiesContainer')" class="btn btn-danger">Удалить</button>
                     </div>
                 </div>
 
@@ -131,6 +131,9 @@
 
 @section Scripts {
     <script>
+        var possibleRemoteAreas = @Html.Raw(Model.PossibleRemoteAreas);
+        var possibleSpecialties = @Html.Raw(Model.PossibleSpecialties);
+
         $(document).ready(function () {
             $('#companySearch').on('input', function () {
                 var searchQuery = $(this).val().toLowerCase();
@@ -140,7 +143,7 @@
                     $(this).toggle(match);
                 });
             });
-            
+
             $('#facultySearch').on('input', function () {
                 var searchQuery = $(this).val().toLowerCase();
                 $('#facultySelect option').each(function () {
@@ -149,27 +152,71 @@
                     $(this).toggle(match);
                 });
             });
-        })
-        
-    function addField(containerId, fieldName, placeholderText) {
-        var container = document.getElementById(containerId);
-        var input = document.createElement("input");
-        input.type = containerId === "countsContainer" ? "number" : "text";
-        input.name = fieldName;
-        input.placeholder = placeholderText;
-        input.classList = "form-control";
-        container.appendChild(input);
-        container.appendChild(document.createElement("br"));
-    }
+        });
 
-    function removeLastField(containerId) {
-        var container = document.getElementById(containerId);
-        var inputs = container.getElementsByTagName("input");
-        if (inputs.length > 0) {
-            container.removeChild(inputs[inputs.length - 1]);
-            container.removeChild(container.lastElementChild);
+        function addField(containerId, fieldName, placeholderText) {
+            var container = document.getElementById(containerId);
+            var input = document.createElement("input");
+            input.type = containerId === "countsContainer" ? "number" : "text";
+            input.name = fieldName;
+            input.placeholder = placeholderText;
+            input.classList = "form-control";
+            container.appendChild(input);
+            container.appendChild(document.createElement("br"));
         }
-    }
 
+        function removeLastField(containerId) {
+            var container = document.getElementById(containerId);
+            var inputs = container.getElementsByTagName("input");
+            if (inputs.length > 0) {
+                container.removeChild(inputs[inputs.length - 1]);
+                container.removeChild(container.lastElementChild);
+            }
+        }
+
+        function addSelectFieldRemoteAreas(containerId, fieldName) {
+            var container = document.getElementById(containerId);
+            var select = document.createElement("select");
+            select.name = fieldName;
+            select.id = "remoteAreasSelect"; 
+            select.classList = "form-control";
+
+            for (var i = 0; i < possibleRemoteAreas.length; i++) {
+                var option = document.createElement("option");
+                option.text = possibleRemoteAreas[i].Value;
+                option.value = possibleRemoteAreas[i].Value;
+                select.appendChild(option);
+            }
+
+            container.appendChild(select);
+            container.appendChild(document.createElement("br"));
+        }
+
+        function addSelectFieldSpecialties(containerId, fieldName) {
+            var container = document.getElementById(containerId);
+            var select = document.createElement("select");
+            select.name = fieldName;
+            select.id = "specialtiesSelect"; 
+            select.classList = "form-control";
+
+            for (var i = 0; i < possibleSpecialties.length; i++) {
+                var option = document.createElement("option");
+                option.text = possibleSpecialties[i].Value;
+                option.value = possibleSpecialties[i].Value;
+                select.appendChild(option);
+            }
+
+            container.appendChild(select);
+            container.appendChild(document.createElement("br"));
+        }
+
+        function removeLastSelectField(containerId) {
+            var container = document.getElementById(containerId);
+            var selects = container.getElementsByTagName("select");
+            if (selects.length > 0) {
+                container.removeChild(selects[selects.length - 1]);
+                container.removeChild(container.lastElementChild);
+            }
+        }
     </script>
 }

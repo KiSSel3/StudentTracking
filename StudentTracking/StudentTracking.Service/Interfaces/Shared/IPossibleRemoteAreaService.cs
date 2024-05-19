@@ -6,4 +6,5 @@ public interface IPossibleRemoteAreaService
 {
     public Task<IEnumerable<PossibleRemoteAreaEntity>> GetPossibleRemoteAreaListAsync();
     public Task DeletePossibleRemoteAreaAsync(Guid id);
+    public Task CreatePossibleRemoteAreaAsync(PossibleRemoteAreaEntity entity);
 }
