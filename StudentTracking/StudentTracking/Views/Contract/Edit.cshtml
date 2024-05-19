@@ -33,7 +33,7 @@
                         <select name="FacultyId" id="facultySelect" class="form-control" required>
                             @foreach (var faculty in Model.Faculties)
                             {
-                            <option value="@faculty.Id">@faculty.FullName</option>
+                                <option value="@faculty.Id" selected="@(Model.FullContract.Faculty.Id.Equals(faculty.Id))">@faculty.FullName</option>
                             }
                         </select>
                     </div>
