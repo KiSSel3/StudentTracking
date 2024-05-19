@@ -7,6 +7,6 @@ public class NewLetterViewModel
 {
     public IEnumerable<FacultyEntity> Faculties { get; set; }
     public IEnumerable<CompanyEntity> Companies { get; set; }
-    public string PossibleRemoteAreas { get; set; }
-    public string PossibleSpecialties { get; set; }
+    public IEnumerable<PossibleRemoteAreaEntity> PossibleRemoteAreasList { get; set; }
+    public IEnumerable<PossibleSpecialtyEntity> PossibleSpecialtiesList { get; set; }
 }

@@ -12,7 +12,4 @@ public class UpdateLetterViewModel
     public IEnumerable<CompanyEntity> Companies { get; set; }
     public IEnumerable<PossibleRemoteAreaEntity> PossibleRemoteAreasList { get; set; }
     public IEnumerable<PossibleSpecialtyEntity> PossibleSpecialtiesList { get; set; }
-    
-    public string PossibleRemoteAreas { get; set; }
-    public string PossibleSpecialties { get; set; }
 }

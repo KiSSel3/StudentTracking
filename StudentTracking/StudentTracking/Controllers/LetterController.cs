@@ -119,14 +119,14 @@ public class LetterController(
             {
                 throw new Exception("Ошибка получения отсталых районов");
             }
-            newLetterViewModel.PossibleRemoteAreas = JsonConvert.SerializeObject(possibleRemoteAreas);
+            newLetterViewModel.PossibleRemoteAreasList = possibleRemoteAreas;
             
             var possibleSpecialties = await _possibleSpecialtyService.GetPossibleSpecialtyListAsync();
             if (faculties is null)
             {
                 throw new Exception("Ошибка получения специальностей");
             }
-            newLetterViewModel.PossibleSpecialties = JsonConvert.SerializeObject(possibleSpecialties);
+            newLetterViewModel.PossibleSpecialtiesList = possibleSpecialties;
             
             return View("Create", newLetterViewModel);
         }
@@ -202,7 +202,6 @@ public class LetterController(
                 throw new Exception("Ошибка получения отсталых районов");
             }
             updateLetterViewModel.PossibleRemoteAreasList = possibleRemoteAreas;
-            updateLetterViewModel.PossibleRemoteAreas = JsonConvert.SerializeObject(possibleRemoteAreas);
             
             var possibleSpecialties = await _possibleSpecialtyService.GetPossibleSpecialtyListAsync();
             if (faculties is null)
@@ -210,7 +209,6 @@ public class LetterController(
                 throw new Exception("Ошибка получения специальностей");
             }
             updateLetterViewModel.PossibleSpecialtiesList = possibleSpecialties;
-            updateLetterViewModel.PossibleSpecialties = JsonConvert.SerializeObject(possibleSpecialties);
             
             return View("Edit", updateLetterViewModel);
         }

@@ -82,7 +82,14 @@
                 </div>
 
                 <br/>
-                <h4>Отсталый р-он:</h4>
+                <div class="row">
+                    <div class="col-md-5 text-start">
+                        <h4>Отсталый р-он:</h4>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <input type="text" id="remoteAreasSearch" class="form-control" placeholder="Фильтрация">
+                    </div>
+                </div>
                 <div id="remoteAreasContainer" class="row m-3">
                 </div>
                 <div class="row">
@@ -95,7 +102,14 @@
                 </div>
 
                 <br/>
-                <h4>Специальности:</h4>
+                <div class="row">
+                    <div class="col-md-5 text-start">
+                        <h4>Специальности:</h4>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <input type="text" id="specialtiesSearch" class="form-control" placeholder="Фильтрация">
+                    </div>
+                </div>
                 <div id="specialtiesContainer" class="row m-3">
                 </div>
                 <div class="row">
@@ -131,9 +145,6 @@
 
 @section Scripts {
     <script>
-        var possibleRemoteAreas = @Html.Raw(Model.PossibleRemoteAreas);
-        var possibleSpecialties = @Html.Raw(Model.PossibleSpecialties);
-
         $(document).ready(function () {
             $('#companySearch').on('input', function () {
                 var searchQuery = $(this).val().toLowerCase();
@@ -147,6 +158,24 @@
             $('#facultySearch').on('input', function () {
                 var searchQuery = $(this).val().toLowerCase();
                 $('#facultySelect option').each(function () {
+                    var text = $(this).text().toLowerCase();
+                    var match = text.includes(searchQuery);
+                    $(this).toggle(match);
+                });
+            });
+
+            $('#remoteAreasSearch').on('input', function () {
+                var searchQuery = $(this).val().toLowerCase();
+                $('#remoteAreasSelect option').each(function () {
+                    var text = $(this).text().toLowerCase();
+                    var match = text.includes(searchQuery);
+                    $(this).toggle(match);
+                });
+            });
+
+            $('#specialtiesSearch').on('input', function () {
+                var searchQuery = $(this).val().toLowerCase();
+                $('#specialtiesSelect option').each(function () {
                     var text = $(this).text().toLowerCase();
                     var match = text.includes(searchQuery);
                     $(this).toggle(match);
@@ -178,14 +207,17 @@
             var container = document.getElementById(containerId);
             var select = document.createElement("select");
             select.name = fieldName;
-            select.id = "remoteAreasSelect"; 
+            select.id = "remoteAreasSelect";
             select.classList = "form-control";
 
-            for (var i = 0; i < possibleRemoteAreas.length; i++) {
-                var option = document.createElement("option");
-                option.text = possibleRemoteAreas[i].Value;
-                option.value = possibleRemoteAreas[i].Value;
-                select.appendChild(option);
+            @foreach (var possibleRemoteArea in Model.PossibleRemoteAreasList)
+            {
+                <text>
+                    var option = document.createElement("option");
+                    option.text = decodeEntities('@possibleRemoteArea.Value');
+                    option.value = decodeEntities('@possibleRemoteArea.Value');
+                    select.appendChild(option);
+                </text>
             }
 
             container.appendChild(select);
@@ -196,14 +228,17 @@
             var container = document.getElementById(containerId);
             var select = document.createElement("select");
             select.name = fieldName;
-            select.id = "specialtiesSelect"; 
+            select.id = "specialtiesSelect";
             select.classList = "form-control";
 
-            for (var i = 0; i < possibleSpecialties.length; i++) {
-                var option = document.createElement("option");
-                option.text = possibleSpecialties[i].Value;
-                option.value = possibleSpecialties[i].Value;
-                select.appendChild(option);
+            @foreach (var item in Model.PossibleSpecialtiesList)
+            {
+                <text>
+                    var option = document.createElement("option");
+                    option.text = decodeEntities('@item.Value');
+                    option.value = decodeEntities('@item.Value');
+                    select.appendChild(option);
+                </text>
             }
 
             container.appendChild(select);
@@ -217,6 +252,12 @@
                 container.removeChild(selects[selects.length - 1]);
                 container.removeChild(container.lastElementChild);
             }
+        }
+
+        function decodeEntities(encodedString) {
+            var textArea = document.createElement('textarea');
+            textArea.innerHTML = encodedString;
+            return textArea.value;
         }
     </script>
 }

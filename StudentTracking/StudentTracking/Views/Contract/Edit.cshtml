@@ -42,6 +42,24 @@
                     </div>
                 </div>
                 <br/>
+
+                <p>Код специальности:</p>
+                <div class="row">
+                    <div class="col-4">
+                        <select name="SpecialtyCode" id="specialtyCodeSelect" class="form-control">
+                            <option value="" selected="@(Model.FullContract.Contract.SpecialtyCode.Equals(""))">Пусто</option>
+                            
+                            @foreach (var item in Model.PossibleSpecialtiesList)
+                            {
+                                <option value="@item.Value" selected="@(Model.FullContract.Contract.SpecialtyCode.Equals(item.Value))">@item.Value</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="specialtyCodeSearch" class="form-control" placeholder="Фильтрация по коду специальности">
+                    </div>
+                </div>
+                <br/>
                 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="EducationProfileId">Профиль образования:</span>
@@ -56,11 +74,6 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="StatusId">Статус:</span>
                     <input type="text"  class="form-control" aria-label="Status" aria-describedby="StatusId" name="Status" value="@Model.FullContract.Contract.Status">
-                </div>
-                
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="SpecialtyCodeId">Код специальности:</span>
-                    <input type="text"  class="form-control" aria-label="SpecialtyCode" aria-describedby="SpecialtyCodeId" name="SpecialtyCode" value="@Model.FullContract.Contract.SpecialtyCode">
                 </div>
                 
                 <div class="input-group mb-3">
@@ -145,6 +158,15 @@
             $('#facultySearch').on('input', function () {
                 var searchQuery = $(this).val().toLowerCase();
                 $('#facultySelect option').each(function () {
+                    var text = $(this).text().toLowerCase();
+                    var match = text.includes(searchQuery);
+                    $(this).toggle(match);
+                });
+            });
+
+            $('#specialtyCodeSearch').on('input', function () {
+                var searchQuery = $(this).val().toLowerCase();
+                $('#specialtyCodeSelect option').each(function () {
                     var text = $(this).text().toLowerCase();
                     var match = text.includes(searchQuery);
                     $(this).toggle(match);

@@ -9,4 +9,5 @@ public class UpdateContractViewModel
     public FullContractModel FullContract { get; set; }
     
     public IEnumerable<FacultyEntity> Faculties { get; set; }
+    public IEnumerable<PossibleSpecialtyEntity> PossibleSpecialtiesList { get; set; }
 }

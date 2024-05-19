@@ -14,7 +14,8 @@ public class ContractController(
     ICompanyService companyService,
     IFacultyService facultyService,
     IContractSortingService sortingService,
-    IContractFilteringService filteringService)
+    IContractFilteringService filteringService,
+    IPossibleSpecialtyService possibleSpecialtyService)
     : Controller
 {
     private readonly IContractService _contractService = contractService;
@@ -22,6 +23,7 @@ public class ContractController(
     private readonly IFacultyService _facultyService = facultyService;
     private readonly IContractFilteringService _filteringService = filteringService;
     private readonly IContractSortingService _sortingService = sortingService;
+    private readonly IPossibleSpecialtyService _possibleSpecialtyService = possibleSpecialtyService;
 
     [HttpGet]
     public async Task<IActionResult> Index()
@@ -104,6 +106,13 @@ public class ContractController(
             {
                 throw new Exception("Ошибка получения факультетов");
             }
+            
+            var possibleSpecialties = await _possibleSpecialtyService.GetPossibleSpecialtyListAsync();
+            if (faculties is null)
+            {
+                throw new Exception("Ошибка получения специальностей");
+            }
+            updateContractViewModel.PossibleSpecialtiesList = possibleSpecialties;
 
             updateContractViewModel.Faculties = faculties;
 
@@ -155,6 +164,13 @@ public class ContractController(
             }
 
             newContractViewModel.Faculties = faculties;
+            
+            var possibleSpecialties = await _possibleSpecialtyService.GetPossibleSpecialtyListAsync();
+            if (faculties is null)
+            {
+                throw new Exception("Ошибка получения специальностей");
+            }
+            newContractViewModel.PossibleSpecialtiesList = possibleSpecialties;
             
             return View("Create", newContractViewModel);
         }

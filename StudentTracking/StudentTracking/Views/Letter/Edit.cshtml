@@ -94,7 +94,16 @@
                 </div>
 
                 <br/>
-                <h4>Отсталый р-он:</h4>
+
+                <div class="row">
+                    <div class="col-md-5 text-start">
+                        <h4>Отсталый р-он:</h4>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <input type="text" id="remoteAreasSearch" class="form-control" placeholder="Фильтрация">
+                    </div>
+                </div>
+                
                 <div id="remoteAreasContainer" class="row m-3">
                     @foreach (var remoteArea in Model.FullLetter.RemoteAreas)
                     {
@@ -117,7 +126,16 @@
                 </div>
 
                 <br/>
-                <h4>Специальности:</h4>
+
+                <div class="row">
+                    <div class="col-md-5 text-start">
+                        <h4>Специальности:</h4>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <input type="text" id="specialtiesSearch" class="form-control" placeholder="Фильтрация">
+                    </div>
+                </div>
+                
                 <div id="specialtiesContainer" class="row m-3">
                     @foreach (var specialty in Model.FullLetter.Specialties)
                     {
@@ -171,9 +189,6 @@
 
 @section Scripts {
     <script>
-        var possibleRemoteAreas = @Html.Raw(Model.PossibleRemoteAreas);
-        var possibleSpecialties = @Html.Raw(Model.PossibleSpecialties);
-        
         $(document).ready(function () {
             $('#companySearch').on('input', function () {
                 var searchQuery = $(this).val().toLowerCase();
@@ -192,71 +207,101 @@
                     $(this).toggle(match);
                 });
             });
+
+            $('#remoteAreasSearch').on('input', function () {
+                var searchQuery = $(this).val().toLowerCase();
+                $('#remoteAreasSelect option').each(function () {
+                    var text = $(this).text().toLowerCase();
+                    var match = text.includes(searchQuery);
+                    $(this).toggle(match);
+                });
+            });
+            
+            $('#specialtiesSearch').on('input', function () {
+                var searchQuery = $(this).val().toLowerCase();
+                $('#specialtiesSelect option').each(function () {
+                    var text = $(this).text().toLowerCase();
+                    var match = text.includes(searchQuery);
+                    $(this).toggle(match);
+                });
+            });
         });
         
-    function addField(containerId, fieldName, placeholderText) {
-        var container = document.getElementById(containerId);
-        var input = document.createElement("input");
-        input.type = containerId === "countsContainer" ? "number" : "text";
-        input.name = fieldName;
-        input.placeholder = placeholderText;
-        input.classList = "form-control";
-        container.appendChild(input);
-        container.appendChild(document.createElement("br"));
-    }
-
-    function removeLastField(containerId) {
-        var container = document.getElementById(containerId);
-        var inputs = container.getElementsByTagName("input");
-        if (inputs.length > 0) {
-            container.removeChild(inputs[inputs.length - 1]);
-            container.removeChild(container.lastElementChild);
-        }
-    }
-
-    function addSelectFieldRemoteAreas(containerId, fieldName) {
-        var container = document.getElementById(containerId);
-        var select = document.createElement("select");
-        select.name = fieldName;
-        select.id = "remoteAreasSelect";
-        select.classList = "form-control";
-
-        for (var i = 0; i < possibleRemoteAreas.length; i++) {
-            var option = document.createElement("option");
-            option.text = possibleRemoteAreas[i].Value;
-            option.value = possibleRemoteAreas[i].Value;
-            select.appendChild(option);
+        function addField(containerId, fieldName, placeholderText) {
+            var container = document.getElementById(containerId);
+            var input = document.createElement("input");
+            input.type = containerId === "countsContainer" ? "number" : "text";
+            input.name = fieldName;
+            input.placeholder = placeholderText;
+            input.classList = "form-control";
+            container.appendChild(input);
+            container.appendChild(document.createElement("br"));
         }
 
-        container.appendChild(select);
-        container.appendChild(document.createElement("br"));
-    }
-
-    function addSelectFieldSpecialties(containerId, fieldName) {
-        var container = document.getElementById(containerId);
-        var select = document.createElement("select");
-        select.name = fieldName;
-        select.id = "specialtiesSelect";
-        select.classList = "form-control";
-
-        for (var i = 0; i < possibleSpecialties.length; i++) {
-            var option = document.createElement("option");
-            option.text = possibleSpecialties[i].Value;
-            option.value = possibleSpecialties[i].Value;
-            select.appendChild(option);
+        function removeLastField(containerId) {
+            var container = document.getElementById(containerId);
+            var inputs = container.getElementsByTagName("input");
+            if (inputs.length > 0) {
+                container.removeChild(inputs[inputs.length - 1]);
+                container.removeChild(container.lastElementChild);
+            }
         }
 
-        container.appendChild(select);
-        container.appendChild(document.createElement("br"));
-    }
-
-    function removeLastSelectField(containerId) {
-        var container = document.getElementById(containerId);
-        var selects = container.getElementsByTagName("select");
-        if (selects.length > 0) {
-            container.removeChild(selects[selects.length - 1]);
-            container.removeChild(container.lastElementChild);
+        function addSelectFieldRemoteAreas(containerId, fieldName) {
+            var container = document.getElementById(containerId);
+            var select = document.createElement("select");
+            select.name = fieldName;
+            select.id = "remoteAreasSelect";
+            select.classList = "form-control";
+            
+            @foreach (var possibleRemoteArea in Model.PossibleRemoteAreasList)
+            {
+                <text>
+                    var option = document.createElement("option");
+                    option.text = decodeEntities('@possibleRemoteArea.Value');
+                    option.value = decodeEntities('@possibleRemoteArea.Value');
+                    select.appendChild(option);
+                </text>
+            }
+        
+            container.appendChild(select);
+            container.appendChild(document.createElement("br"));
         }
-    }
+
+        function addSelectFieldSpecialties(containerId, fieldName) {
+            var container = document.getElementById(containerId);
+            var select = document.createElement("select");
+            select.name = fieldName;
+            select.id = "specialtiesSelect";
+            select.classList = "form-control";
+        
+            @foreach (var item in Model.PossibleSpecialtiesList)
+            {
+                <text>
+                    var option = document.createElement("option");
+                    option.text = decodeEntities('@item.Value');
+                    option.value = decodeEntities('@item.Value');
+                    select.appendChild(option);
+                </text>
+            }
+        
+            container.appendChild(select);
+            container.appendChild(document.createElement("br"));
+        }
+
+        function removeLastSelectField(containerId) {
+            var container = document.getElementById(containerId);
+            var selects = container.getElementsByTagName("select");
+            if (selects.length > 0) {
+                container.removeChild(selects[selects.length - 1]);
+                container.removeChild(container.lastElementChild);
+            }
+        }
+
+        function decodeEntities(encodedString) {
+            var textArea = document.createElement('textarea');
+            textArea.innerHTML = encodedString;
+            return textArea.value;
+        }
     </script>
 }
