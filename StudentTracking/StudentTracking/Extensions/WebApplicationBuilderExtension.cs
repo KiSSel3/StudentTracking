@@ -46,6 +46,8 @@ public static class WebApplicationBuilderExtension
         builder.Services.AddScoped<IStudentRepository, StudentRepository>();
         builder.Services.AddScoped<IBaseRepository<CompanyEntity>, CompanyRepository>();
         builder.Services.AddScoped<IBaseRepository<FacultyEntity>, FacultyRepository>();
+        builder.Services.AddScoped<IBaseRepository<PossibleRemoteAreaEntity>, PossibleRemoteAreaRepository>();
+        builder.Services.AddScoped<IBaseRepository<PossibleSpecialtyEntity>, PossibleSpecialtyRepository>();
 
         //Services
         builder.Services.AddScoped<IRoleService, RoleService>();
@@ -56,6 +58,8 @@ public static class WebApplicationBuilderExtension
         
         builder.Services.AddScoped<ICompanyService, CompanyService>();
         builder.Services.AddScoped<IFacultyService, FacultyService>();
+        builder.Services.AddScoped<IPossibleRemoteAreaService, PossibleRemoteAreaService>();
+        builder.Services.AddScoped<IPossibleSpecialtyService, PossibleSpecialtyService>();
         
         builder.Services.AddScoped<ILetterFilteringService, LetterFilteringService>();
         builder.Services.AddScoped<ILetterSortingService, LetterSortingService>();

@@ -23,6 +23,8 @@ public class ApplicationDbContext : DbContext
     //Shared
     public DbSet<CompanyEntity> Companies { get; set; }
     public DbSet<FacultyEntity> Faculties { get; set; }
+    public DbSet<PossibleRemoteAreaEntity> PossibleRemoteAreas { get; set; }
+    public DbSet<PossibleSpecialtyEntity> PossibleSpecialties { get; set; }
     
     //Main
     public DbSet<RoleEntity> Roles { get; set; }
