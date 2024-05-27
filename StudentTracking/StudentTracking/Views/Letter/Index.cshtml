@@ -1,6 +1,18 @@
 @using StudentTracking.Domain.Enums
 @model StudentTracking.Shared.ViewModels.LetterViewModel
 
+@section Style {
+<style>
+    .table thead th {
+        position: sticky;
+        top: 0;
+        background-color: #343a40;
+        color: white;
+        z-index: 1;
+    }
+</style>
+}
+
 <div class="modal fade" id="checkLetterModal" tabindex="-1" aria-labelledby="checkLetterModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">

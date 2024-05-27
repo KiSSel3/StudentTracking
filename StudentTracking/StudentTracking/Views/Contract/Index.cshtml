@@ -1,6 +1,19 @@
 @using StudentTracking.Domain.Enums
 @model StudentTracking.Shared.ViewModels.ContractViewModel
 
+@section Style {
+<style>
+    .table thead th {
+        position: sticky;
+        top: 0;
+        background-color: #343a40;
+        color: white;
+        z-index: 1;
+    }
+</style>
+}
+
+
 <table class="table table-sm table-striped caption-top table-hover table-bordered align-middle">
 <caption>
     <div class="row align-items-center">
