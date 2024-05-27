@@ -261,26 +261,34 @@ public class LetterService(
 
     public async Task<string> CheckLetterAsync(Guid id)
     {
-        DateTime currentDate = DateTime.Now;
-        int inLetterCount = 0;
-        int inContractCount = 0;
-
-        var fullLetters = await GetFullLetterListAsync();
-        var fullLetter = fullLetters.FirstOrDefault(fl => fl.Letter.Id == id);
-        if (fullLetter is null)
+        try
         {
-            HandleError("FullLetter not found");
+            DateTime currentDate = DateTime.Now;
+            int inLetterCount = 0;
+            int inContractCount = 0;
+
+            var fullLetters = await GetFullLetterListAsync();
+            var fullLetter = fullLetters.FirstOrDefault(fl => fl.Letter.Id == id);
+            if (fullLetter is null)
+            {
+                HandleError("FullLetter not found");
+            }
+
+            inLetterCount = fullLetter.Counts.Sum(c => c.Value);
+
+            var contract = await _contractRepository.GetByCompanyIdAsync(fullLetter.Company.Id);
+            var counts = await _annualNumberPeopleRepository.GetByContactId(contract.Id);
+            var curYearCounts = counts.Where(c => c.Year.Year == currentDate.Year);
+            inContractCount = curYearCounts.Sum(cyc => cyc.Count);
+
+            return
+                $"Количество людей в письме: {inLetterCount}\nКоличество людей в договоре на {currentDate.Year} год: {inContractCount}";
         }
-
-        inLetterCount = fullLetter.Counts.Sum(c => c.Value);
-
-        var contract = await _contractRepository.GetByCompanyIdAsync(fullLetter.Company.Id);
-        var counts = await _annualNumberPeopleRepository.GetByContactId(contract.Id);
-        var curYearCounts = counts.Where(c => c.Year.Year == currentDate.Year);
-        inContractCount = curYearCounts.Sum(cyc => cyc.Count);
-
-        return
-            $"Количество людей в письме: {inLetterCount}\nКоличество людей в договоре на {currentDate.Year} год: {inContractCount}";
+        catch(Exception ex)
+        {
+            return
+                $"Договор отсутствует!";
+        }
     }
 
     public async Task ModifyIsHighlight(Guid id, bool value)
@@ -326,8 +334,8 @@ public class LetterService(
                 string specialties = string.Join("\n", fullLetter.Specialties.Select(s => s.Value));
                 worksheet.Cells[row, 2].Value = specialties;
                 
-                worksheet.Cells[row, 3].Value = fullLetter.Company.ShortName;
-                worksheet.Cells[row, 4].Value = fullLetter.Company.Address;
+                worksheet.Cells[row, 3].Value = fullLetter.Company?.ShortName;
+                worksheet.Cells[row, 4].Value = fullLetter.Company?.Address;
                 
                 string remoteAreas = string.Join("\n", fullLetter.RemoteAreas.Select(r => r.Value));
                 worksheet.Cells[row, 5].Value = remoteAreas;

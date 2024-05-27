@@ -26,6 +26,8 @@
                 <div class="row">
                     <div class="col-4">
                         <select name="CompanyId" id="companySelect" class="form-control" required>
+                            <option value="@Guid.Empty">Пусто</option>
+                            
                             @foreach (var company in Model.Companies)
                             {
                             <option value="@company.Id">@company.ShortName</option>

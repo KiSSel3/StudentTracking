@@ -29,13 +29,13 @@ public class LetterSortingService : ILetterSortingService
 
             case LetterSortingParameters.CompanyName:
                 return isSortingDirectionDesc ?
-                    letters.OrderByDescending(l => l.Company.FullName) :
-                    letters.OrderBy(l => l.Company.FullName);
+                    letters.OrderByDescending(l => l.Company?.FullName) :
+                    letters.OrderBy(l => l.Company?.FullName);
 
             case LetterSortingParameters.CompanyAddress:
                 return isSortingDirectionDesc ?
-                    letters.OrderByDescending(l => l.Company.Address) :
-                    letters.OrderBy(l => l.Company.Address);
+                    letters.OrderByDescending(l => l.Company?.Address) :
+                    letters.OrderBy(l => l.Company?.Address);
 
             case LetterSortingParameters.RemoteAreas:
                 return isSortingDirectionDesc ?

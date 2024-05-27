@@ -30,9 +30,11 @@
                 <div class="row">
                     <div class="col-4">
                         <select name="CompanyId" id="companySelect" class="form-control" required>
+                            <option value="@Guid.Empty" selected="@(Model.FullLetter.Letter.CompanyId == Guid.Empty)">Пусто</option>
+                            
                             @foreach (var company in Model.Companies)
                             {
-                                <option value="@company.Id" selected="@(Model.FullLetter.Company.Id.Equals(company.Id))">@company.ShortName</option>
+                                <option value="@company.Id" selected="@(Model.FullLetter.Company?.Id.Equals(company.Id))">@company.ShortName</option>
                             }
                         </select>
                     </div>

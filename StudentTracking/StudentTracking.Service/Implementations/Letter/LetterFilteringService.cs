@@ -17,8 +17,8 @@ public class LetterFilteringService : ILetterFilteringService
         return letters.Where(letter =>
             letter.Faculty.Abbreviation.ToLower().Contains(keyword) ||
             letter.Specialties.Any(specialty => specialty.Value.ToLower().Contains(keyword)) ||
-            letter.Company.ShortName.ToLower().Contains(keyword) ||
-            letter.Company.Address.ToLower().Contains(keyword) ||
+            (letter.Letter.CompanyId != Guid.Empty && letter.Company.ShortName.ToLower().Contains(keyword)) ||
+            (letter.Letter.CompanyId != Guid.Empty && letter.Company.Address.ToLower().Contains(keyword)) ||
             letter.RemoteAreas.Any(remoteArea => remoteArea.Value.ToLower().Contains(keyword)) ||
             letter.Letter.Base.ToLower().Contains(keyword) ||
             letter.Letter.Number.ToLower().Contains(keyword) ||
