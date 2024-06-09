@@ -27,6 +27,17 @@ public class PossibleSpecialtyService(
         return list;
     }
 
+    public async Task<PossibleSpecialtyEntity> GetByIdAsync(Guid id)
+    {
+        var possibleSpecialty = await _possibleSpecialtyRepository.GetByIdAsync(id);
+        if (possibleSpecialty is null)
+        {
+            HandleError($"Possible specialty with id: {id} not found");
+        }
+
+        return possibleSpecialty;
+    }
+
     public async Task DeletePossibleSpecialtyAsync(Guid id)
     {
         var item = await _possibleSpecialtyRepository.GetByIdAsync(id);
@@ -41,5 +52,18 @@ public class PossibleSpecialtyService(
     public async Task CreatePossibleSpecialtyAsync(PossibleSpecialtyEntity entity)
     {
         await _possibleSpecialtyRepository.CreateAsync(entity);
+    }
+
+    public async Task UpdatePossibleSpecialtyAsync(PossibleSpecialtyEntity entity)
+    {
+        var possibleSpecialty = await _possibleSpecialtyRepository.GetByIdAsync(entity.Id);
+        if (possibleSpecialty is null)
+        {
+            HandleError($"Possible specialty with id: {entity.Id} not found");
+        }
+
+        possibleSpecialty.Value = entity.Value;
+        
+        await _possibleSpecialtyRepository.UpdateAsync(possibleSpecialty);
     }
 }

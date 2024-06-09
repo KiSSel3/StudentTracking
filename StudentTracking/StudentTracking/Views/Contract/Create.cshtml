@@ -40,21 +40,9 @@
                 </div>
                 <br/>
 
-                <p>Код специальности:</p>
-                <div class="row">
-                    <div class="col-4">
-                        <select name="SpecialtyCode" id="specialtyCodeSelect" class="form-control">
-                            <option value="">Пусто</option>
-
-                            @foreach (var item in Model.PossibleSpecialtiesList)
-                            {
-                            <option value="@item.Value">@item.Value</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-8">
-                        <input type="text" id="specialtyCodeSearch" class="form-control" placeholder="Фильтрация по коду специальности">
-                    </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="SpecialtyCodeId">Код специальности:</span>
+                    <input type="text"  class="form-control" aria-label="SpecialtyCode" aria-describedby="SpecialtyCodeId" name="SpecialtyCode" value="">
                 </div>
                 <br/>
                 
@@ -192,6 +180,7 @@
             inputCount.classList.add("form-control");
             inputCount.setAttribute("aria-label", "Counts");
             inputCount.setAttribute("aria-describedby", containerId + "CountId");
+            inputCount.min = "0";
             inputCount.required = "true";
             
 

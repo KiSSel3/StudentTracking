@@ -196,6 +196,42 @@ public class AdminController(IUserService userService, IFacultyService facultySe
         }
     }
     
+    [HttpGet]
+    public async Task<IActionResult> UpdatePossibleSpecialty(Guid id)
+    {
+        try
+        {
+            var possibleSpecialty = await _possibleSpecialtyService.GetByIdAsync(id);
+            if (possibleSpecialty is null)
+            {
+                throw new Exception("Faculty not found");
+            }
+
+            return View(possibleSpecialty);
+
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> UpdatePossibleSpecialty(PossibleSpecialtyEntity item)
+    {
+        try
+        {
+            await _possibleSpecialtyService.UpdatePossibleSpecialtyAsync(item);
+            
+            return Redirect($"/Admin/Index/");
+
+        }
+        catch (Exception ex)
+        {
+            return View("Error", new ErrorViewModel() { RequestId = ex.Message });
+        }
+    }
+    
     public async Task<IActionResult> DeletePossibleSpecialty(Guid id)
     {
         try

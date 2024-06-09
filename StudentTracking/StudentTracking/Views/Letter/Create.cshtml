@@ -104,22 +104,15 @@
                 </div>
 
                 <br/>
-                <div class="row">
-                    <div class="col-md-5 text-start">
-                        <h4>Специальности:</h4>
-                    </div>
-                    <div class="col-md-4 text-end">
-                        <input type="text" id="specialtiesSearch" class="form-control" placeholder="Фильтрация">
-                    </div>
-                </div>
+                <h4>Код специальности:</h4>
                 <div id="specialtiesContainer" class="row m-3">
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" onclick="addSelectFieldSpecialties('specialtiesContainer', 'Specialities')" class="btn btn-primary">Добавить</button>
+                        <button type="button" onclick="addField('specialtiesContainer', 'Specialities', 'Код специальности')" class="btn btn-primary">Добавить</button>
                     </div>
                     <div class="col-md-6">
-                        <button type="button" onclick="removeLastSelectField('specialtiesContainer')" class="btn btn-danger">Удалить</button>
+                        <button type="button" onclick="removeLastField('specialtiesContainer')" class="btn btn-danger">Удалить</button>
                     </div>
                 </div>
 
@@ -192,6 +185,11 @@
             input.name = fieldName;
             input.placeholder = placeholderText;
             input.classList = "form-control";
+            
+            if (input.type === "number"){
+                input.min = "0";
+            }
+            
             container.appendChild(input);
             container.appendChild(document.createElement("br"));
         }

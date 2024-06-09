@@ -79,11 +79,8 @@
                 <div id="studentsContainer" class="row m-3">
                     @foreach (var student in Model.FullLetter.Students)
                     {
-                    <div class="col-md-4">
-                        <div class="form-group">
                             <input type="text" name="Students" value="@student.Name" class="form-control"/>
-                        </div>
-                    </div>
+                            <br/>
                     }
                 </div>
                 <div class="row">
@@ -129,33 +126,21 @@
 
                 <br/>
 
-                <div class="row">
-                    <div class="col-md-5 text-start">
-                        <h4>Специальности:</h4>
-                    </div>
-                    <div class="col-md-4 text-end">
-                        <input type="text" id="specialtiesSearch" class="form-control" placeholder="Фильтрация">
-                    </div>
-                </div>
-                
+                <br/>
+                <h4>Код специальности:</h4>
                 <div id="specialtiesContainer" class="row m-3">
                     @foreach (var specialty in Model.FullLetter.Specialties)
                     {
-                        <select name="Specialities" id="specialtiesSelect" class="form-control">
-                            @foreach (var item in Model.PossibleSpecialtiesList)
-                            {
-                                <option value="@item.Value" selected="@(specialty.Value.Equals(item.Value))">@item.Value</option>
-                            }
-                        </select>
-                        <br>
+                        <input type="text" name="Specialities" value="@specialty.Value" class="form-control"/>
+                        <br/>
                     }
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="button" onclick="addSelectFieldSpecialties('specialtiesContainer', 'Specialities')" class="btn btn-primary">Добавить</button>
+                        <button type="button" onclick="addField('specialtiesContainer', 'Specialities', 'Код специальности')" class="btn btn-primary">Добавить</button>
                     </div>
                     <div class="col-md-6">
-                        <button type="button" onclick="removeLastSelectField('specialtiesContainer')" class="btn btn-danger">Удалить</button>
+                        <button type="button" onclick="removeLastField('specialtiesContainer')" class="btn btn-danger">Удалить</button>
                     </div>
                 </div>
 
@@ -164,11 +149,8 @@
                 <div id="countsContainer" class="row m-3">
                     @foreach (var count in Model.FullLetter.Counts)
                     {
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <input type="number" name="Counts" value="@count.Value" class="form-control"/>
-                        </div>
-                    </div>
+                        <input type="number" name="Counts" value="@count.Value" class="form-control" min="0"/>
+                        <br/>
                     }
                 </div>
                 <div class="row">
@@ -236,6 +218,11 @@
             input.name = fieldName;
             input.placeholder = placeholderText;
             input.classList = "form-control";
+
+            if (input.type === "number"){
+                input.min = "0";
+            }
+            
             container.appendChild(input);
             container.appendChild(document.createElement("br"));
         }

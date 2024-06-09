@@ -120,7 +120,8 @@
                             <td class="col">@item.Value</td>
 
                             <td class="col">
-                                <a class="btn btn-primary w-100 h-100 my-2"  href="@Url.Action("DeletePossibleSpecialty", "Admin", new { id = item.Id })">Удалить</a>
+                                <a class="btn btn-primary w-100 h-100 my-2"  href="@Url.Action("UpdatePossibleSpecialty", "Admin", new { id = item.Id })">Изменить</a>
+                                <a class="btn btn-primary w-100 h-100 my-2" href="@Url.Action("DeletePossibleSpecialty", "Admin", new { id = item.Id })">Удалить</a>
                             </td>
                         </tr>
                     }
